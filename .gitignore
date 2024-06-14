@@ -8,6 +8,7 @@
 /.bundle
 
 # Ignore the default SQLite database.
+  ; コンフリクトが起きるので必ず.gitignoreに記述
 /db/*.sqlite3
 /db/*.sqlite3-*
 ; 念のため追加
