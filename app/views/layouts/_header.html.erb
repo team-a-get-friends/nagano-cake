@@ -1,0 +1,78 @@
+#会員ログイン時のヘッダー
+<% if customer_signed_in? %>
+
+<p>ようこそ、<%= current_customer.last_name %>さん！</p>
+
+<li>
+#マイページリンク
+	<%= link_to "マイページ", customer_path %>
+</li>
+
+<li>
+#商品一覧リンク
+	<%= link_to "商品一覧", items_path %>
+</li>
+
+<li>
+#カートリンク
+	<%= link_to "カート", cart_items_path %>
+</li>
+
+<li>
+#ログアウトリンク
+	<%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
+</li>
+
+#管理者ログイン時のヘッダー
+<% elsif admin_signed_in? %>
+
+<li>
+#商品一覧リンク
+	<%= link_to "商品一覧", admin_items_path %>
+</li>
+
+<li>
+#会員一覧リンク
+	<%= link_to "会員一覧", admin_customers_path %>
+</li>
+
+<li>
+#注文履歴一覧リンク=会員トップページ
+	<%= link_to "注文履歴一覧", admin_path %>
+</li>
+
+<li>
+#ジャンル一覧リンク
+	<%= link_to "ジャンル一覧", admin_genres_path %>
+</li>
+
+<li>
+#ログアウトリンク
+	<%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+</li>
+
+#誰もログインしていない時のヘッダー
+<% else %>
+
+<li>
+#Aboutリンク
+	<%= link_to "About", about_path %>
+</li>
+
+<li>
+#商品一覧リンク→ログインしていなくても閲覧できるよう設定
+	<%= link_to "商品一覧", items_path %>
+</li>
+
+<li>
+#新規登録リンク
+	<%= link_to "新規登録", new_customer_registration_path %>
+</li>
+
+<li>
+#ログインリンク→ここは会員用のURL
+#【？】会員用のログインページにはどうやって行く？
+	<%= link_to "ログイン", new_customer_session_path %>
+</li>
+
+<% end %>
