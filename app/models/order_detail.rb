@@ -1,4 +1,7 @@
 class OrderDetail < ApplicationRecord
+<<<<<<< HEAD
+  
+=======
   #注文ID
   t.integer :order_id, null: false
   #商品ID
@@ -9,4 +12,5 @@ class OrderDetail < ApplicationRecord
   t.integer :amount, null: false
   #製作ステータス
   t.integer :making_status, default: 0, null: false
+>>>>>>> origin/develop
 end
