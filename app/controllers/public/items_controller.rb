@@ -9,4 +9,5 @@ class Public::ItemsController < ApplicationController
     @cart_item.item_id = @item.id
   end
   
+  
 end
