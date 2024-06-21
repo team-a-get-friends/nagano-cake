@@ -1,10 +1,14 @@
 class Public::CartItemsController < ApplicationController
+  
+  # 権限の設定：ログインしていないユーザーが作業できないように設定
+  before_action :authenticate_customer!
 
   def index
     @cart_items = CartItem.all
   end
 
   def update
+    @cart_item = CartItem.find(params[:item_id])
   end
 
   def destroy
