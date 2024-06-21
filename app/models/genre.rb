@@ -1,8 +1,5 @@
 class Genre < ApplicationRecord
-<<<<<<< HEAD
   
-=======
-  #ジャンル名
-  t.string :name, null: false
->>>>>>> origin/develop
+  has_many :items, dependent: :destroy
+  
 end
