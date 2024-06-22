@@ -5,6 +5,15 @@
   <%= form_with model: @customer, url: admin_customer_path(@customer), method: :patch, local: true do |f| %>
     <% render "public/shared/error_messages", resource: @customer %>
 
+    <!--会員ID追記-->
+    <div class="row">
+      <label class="col-lg-3">会員ID</label>
+      <div class="col-lg-3">
+        <%= @customer.id %>
+        <%#= f.text_field :customer_id,autoforcus: true, autocomplete: "customer_id", placeholder: "" %>
+      </div>
+    </div>
+
      <div class="row">
           <label class="col-lg-3">名前</label>
           <div class="col-lg-3">
@@ -18,10 +27,10 @@
       <div class="row">
         <label class="col-lg-3">フリガナ</label>
         <div class="col-lg-3">
-          <%= f.text_field :kana_last_name,autoforcus: true, autocomplete: "kana_last_name",  placeholder: "レイワ" %>
+          <%= f.text_field :last_name_kana,autoforcus: true, autocomplete: "last_name_kana",  placeholder: "レイワ" %>
         </div>
         <div class="col-lg-3">
-          <%= f.text_field :kana_first_name,autoforcus: true, autocomplete: "kana_first_name",  placeholder: "ミチコ" %>
+          <%= f.text_field :first_name_kana,autoforcus: true, autocomplete: "first_name_kana",  placeholder: "ミチコ" %>
         </div>
       </div><br>
 
@@ -42,7 +51,7 @@
       <div class="row">
         <label class="col-lg-3">電話番号（ハイフンなし）</label>
         <div class="col-lg-3">
-          <%= f.text_field :phone_number,autoforcus: true, autocomplete: "phone_number",  placeholder: "0000000000" %>
+          <%= f.text_field :telephone_number,autoforcus: true, autocomplete: "telephone_number",  placeholder: "0000000000" %>
         </div>
       </div><br>
 

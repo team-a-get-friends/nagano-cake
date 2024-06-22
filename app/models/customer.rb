@@ -9,5 +9,16 @@ class Customer < ApplicationRecord
   has_many :cart_items, dependent: :destroy
   has_many :addresses, dependent: :destroy
 
-  
+# 管理者の顧客詳細情報画面(会員ステータス表示)
+  def customer_status
+    if is_active == false
+      "退会"
+    else
+      "有効"
+    end
+  end
+
+  def active_for_authentication?
+    super && (is_active == true)
+  end
 end
