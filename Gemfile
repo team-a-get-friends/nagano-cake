@@ -57,3 +57,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # ログイン機能を追加するために導入
 gem 'devise'
+
+# 数字と文字を対応させるために導入
+gem 'enum_help'
