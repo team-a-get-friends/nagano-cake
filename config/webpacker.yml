@@ -49,7 +49,6 @@ default: &default
 
 development:
   <<: *default
-  #コンパイルがfalseだったらtrueに変更する
   compile: true
 
   # Reference: https://webpack.js.org/configuration/dev-server/
