@@ -16,8 +16,7 @@ Rails.application.routes.draw do
       resources :items, only: [:index, :show]
       resources :customers, only: [:show, :edit, :update] do
         collection do
-          get 'unsubscribe'
-          # get 'check_out'
+          get 'check_out'
           patch 'withdraw'
         end
       end
