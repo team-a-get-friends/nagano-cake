@@ -2,7 +2,8 @@
 
 class Public::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
-  before_action :customer_state, only: [:create]
+    #stateをstatusに変更(エラー発生)
+  before_action :customer_status, only: [:create]
 
 
   # GET /resource/sign_in
@@ -37,6 +38,7 @@ class Public::SessionsController < Devise::SessionsController
 
   private
 
+  #stateをstatusに変更(エラー発生)
   def customer_status
     customer = Customer.find_by(email: params[:customer][:email])
   # 登録されていないemailの場合if文がtrueとなりreturnが実行される→ログインできず
@@ -44,11 +46,14 @@ class Public::SessionsController < Devise::SessionsController
   # emailとパスワードの組み合わせが正しくない場合unless文がtrueとなりreturnが実行される→ログインできず
   return unless customer.valid_password?(params[:customer][:password])
   # is_activeカラムがtrue場合if文がtrueとなりcustomer_stateメソッドが実行完了となり、createアクションが実行される＝ログインできる
-　if customer.is_active == true
+    #全角スペースでエラー発生
+  if customer.is_active == true
   # before_actionで定義しているからここでcreateの記述は不要かも
+    #全角スペースでエラー発生
 		create
-　else
+  else
 		# ここまで来るのは退会した人（emailは登録済み＋パスワードも正しい、けどis_activeがfalse）→再登録のためにサインアップ画面へ→メールアドレスが登録済みの場合、同じアドレスで会員登録は出来ないはず
   	redirect_to (new_customer_registration)
+  end
   end
 end

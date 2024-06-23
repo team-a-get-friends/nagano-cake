@@ -8,6 +8,6 @@
 	退会する場合は、「退会する」をクリックしてください。
 </p>
 <!--会員マイページに遷移-->
-<%= link_to "退会しない", (customer.id) %>
+<%= link_to "退会しない", (@customer.id) %>
 <!--退会後は会員新規登録画面に遷移-->
 <%= link_to "退会する", (withdraw_customers), method: :patch %>

@@ -14,7 +14,17 @@ class Public::CustomersController < ApplicationController
 
   def unsubscribe
     #モデル名.find_by(カラム名: 検索する値)
-    @customer = Customer.find_by(name: params[:name])
+      #nameカラムがないのでemailカラムで特定(置き換え)
+    @customer = Customer.find_by(email: current_customer)
+    # @customer = Customer.find_by(name: params[:name])
+    #NoMethodError発生で条件分岐追記
+    return if @customer.nil?
+    return unless customer.valid_password?(params[:customer][:password])
+    if customer.is_active == true
+      create
+    else
+      redirect_to (new_customer_registration)
+    end
   end
 
   def withdraw
