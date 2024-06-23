@@ -60,3 +60,6 @@ gem 'devise'
 
 # 数字と文字を対応させるために導入
 gem 'enum_help'
+
+# pagyはメンターの対応外なので使用不可。なのでkaminari を実装
+gem 'kaminari','~> 1.2.1'
