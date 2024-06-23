@@ -8,6 +8,8 @@
 	退会する場合は、「退会する」をクリックしてください。
 </p>
 <!--会員マイページに遷移-->
-<%= link_to "退会しない", (@customer.id) %>
+<!--current_customerなのでcustomers_controllerのunsubscribeには@customerなどの記述不要-->
+<%= link_to "退会しない", customer_path(current_customer.id) %>
 <!--退会後は会員新規登録画面に遷移-->
-<%= link_to "退会する", (withdraw_customers), method: :patch %>
+<!--data: { confirm: "退会してもよろしいですか？" }=退会するボタン押した後確認メッセージ表示させる-->
+<%= link_to "退会する", withdraw_customers_path, method: :patch, data: { confirm: "退会してもよろしいですか？" } %>
