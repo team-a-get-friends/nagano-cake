@@ -44,7 +44,7 @@ Rails.application.routes.draw do
 	    resources :genres, only: [:index, :create, :edit, :update] #only: %i[index show new create edit update] 必要に応じて
 	   #顧客詳細情報(管理者)
     	resources :customers, only: [:index, :show, :edit, :update]
-	    resources :orders, only: [:show, :update]
+	    resources :orders, only: [:index, :show, :edit, :update]
 	    resources :order_details, only: [:update]
     end
   end
