@@ -9,12 +9,11 @@
   <%= f.text_field :name, placeholder: "令和道子" %>
 
 <!--【？】分岐について質問-->
-  <!--% if view_name == 'index' %>-->
+  <% if address.id == nil %>
     <%= f.submit "新規登録" %>
-  <!--% end %>-->
 
-  <!--% if view_name == 'edit' %>-->
-    <!--%= f.submit "変更内容を保存" %>-->
-  <!--% end %>-->
+  <% else %>
+    <%= f.submit "変更内容を保存" %>
+  <% end %>
 
 <% end %>

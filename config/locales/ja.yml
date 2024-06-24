@@ -18,13 +18,6 @@ ja:
         completed: "製作完了"
 
 #以下、カリキュラムより転載
-  activerecord:
-    errors:
-      messages:
-        record_invalid: 'バリデーションに失敗しました: %{errors}'
-        restrict_dependent_destroy:
-          has_one: "%{record}が存在しているので削除できません"
-          has_many: "%{record}が存在しているので削除できません"
   date:
     abbr_day_names:
     - 日
@@ -201,6 +194,12 @@ ja:
     pm: 午後
 
   activerecord:
+    errors:
+      messages:
+        record_invalid: 'バリデーションに失敗しました: %{errors}'
+        restrict_dependent_destroy:
+          has_one: "%{record}が存在しているので削除できません"
+          has_many: "%{record}が存在しているので削除できません"
     attributes:
       user:
         confirmation_sent_at: パスワード確認送信時刻
