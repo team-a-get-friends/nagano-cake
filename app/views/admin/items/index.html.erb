@@ -1,1 +1,41 @@
-管理者/商品一覧
+<!--<p class="fw-bold">太字</p>-->
+<!--<p class="text-success">緑字</p>-->
+<!--<p class="text-secondary">灰色字</p>-->
+
+<!--boolean型のviewへの表示は三項演算子を使用する-->
+<!--< %= item.boolean ? 'true' : 'false' %>-->
+
+
+<div class="container">
+  <h2>商品一覧</h2>
+    <div class="text-right index-new">
+      <%= link_to new_admin_item_path do %><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/></svg><!--上手く表示されないから HTMLをコピーを使用（見栄え悪い）-->
+  <!--<i class="fa-thin fa-circle-plus fa-xl" style="color: #000000;"></i><!--Font Awesome導入するか相談-->
+      <% end %>
+    </div>
+
+<table>
+	<thead>
+		<tr>
+			<th>商品ID</th>
+			<th>商品名</th>
+			<th>税抜価格</th>
+			<th>ジャンル</th>
+			<th>ステータス</th>
+		</tr>
+	</thead>
+	<tbody>
+	  <% @items.each do |item| %>
+	  <tr>
+			<td><%= item.id %></td>
+			<td><%= link_to item.name, admin_item_path(item) %></td>
+			<td><%= item.price %></td>
+			<td><%= item.genre.name %></td>
+			<td><%= item.is_active ? '販売中':'販売停止中' %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+
+  <%= paginate @items %>
