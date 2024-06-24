@@ -12,7 +12,11 @@
 
   <body>
     <!--headerの呼び出し-->
-    <%= render 'layouts/header' %>
-    <%= yield %>
+      <%= render 'layouts/header' %>
+    <main>
+      <%= yield %>
+    </main>
+      <%= render 'layouts/footer' %>
   </body>
 </html>
+

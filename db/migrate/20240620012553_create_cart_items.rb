@@ -10,6 +10,5 @@ class CreateCartItems < ActiveRecord::Migration[6.1]
       #数量
       t.integer :amount, null: false
     end
-      add_reference :cart_items, :order, foreign_key: true, null: true
   end
 end
