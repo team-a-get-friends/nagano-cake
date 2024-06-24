@@ -8,7 +8,7 @@ class Address < ApplicationRecord
 
   # 登録している情報から住所を一連で表示させるためのメソッド
   def address_display
-  '〒' + postal_code + ' ' + address + ' ' + name
+  '〒' + post_code + ' ' + address + ' ' + name
   end
 
 end
