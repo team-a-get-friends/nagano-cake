@@ -16,7 +16,7 @@ Rails.application.routes.draw do
       resources :items, only: [:index, :show]
       resources :customers, only: [:show, :edit, :update] do
         collection do
-          get 'check_out'
+          get 'unsubscribe'
           patch 'withdraw'
         end
       end
@@ -42,9 +42,10 @@ Rails.application.routes.draw do
     namespace :admin do
 	    get '/' => 'homes#top'
 	    resources :items, except: [:destroy]
-	    resources :genres, only: [:index, :create, :edit, :update]
+	    resources :genres, only: [:index, :create, :edit, :update] #only: %i[index show new create edit update] 必要に応じて
+	   #顧客詳細情報(管理者)
     	resources :customers, only: [:index, :show, :edit, :update]
-	    resources :orders, only: [:show, :update]
+	    resources :orders, only: [:index, :show, :edit, :update]
 	    resources :order_details, only: [:update]
     end
   end
