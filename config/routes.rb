@@ -16,7 +16,6 @@ Rails.application.routes.draw do
       resources :items, only: [:index, :show]
       resources :customers, only: [:show, :edit, :update] do
         collection do
-          #check_outになっていたのでunsubscribeに変更
           get 'unsubscribe'
           patch 'withdraw'
         end
