@@ -12,5 +12,6 @@ Kaminari.configure do |config|
   # config.max_pages = nil
   # config.params_on_first_page = false
 
-  config.default_per_page = 5
+  # ワイヤーフレームに習い8件
+  config.default_per_page = 8
 end

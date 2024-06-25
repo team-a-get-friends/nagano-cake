@@ -8,11 +8,17 @@ class Public::OrdersController < ApplicationController
   end
 
   def confirm
-	  @total_item_price = params[:cart_item][:total_item_price]
-	  #請求金額を商品合計と送料の和で算出
-	  #送料はconfig/settings/development.ymlで定義したものを呼び出す
+    @cart_items = CartItem.all
+    # カートアイテムを保存するときにcustomer_idは保存している 
+    # @cart_items.customer_id = current_customer.id
+
+	  @total_item_price = params[:order][:total_item_price]
+
     @order = Order.new(order_params)
-	  @order.total_price = @total_item_price.to_i + Setting.order.shipping_fee
+    @order.payment_method = params[:order][:payment_method]
+	  #請求金額を商品合計と送料の和で算出
+	  #送料はOrderモデルで定義したものを呼び出す
+	  @order.total_price = @total_item_price.to_i + order.shipping_fee
       case params[:order][:select_address]
 	      when 0
 		      @order.post_code = current_customer.post_code
@@ -39,9 +45,13 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
+    @orders = Order.all
   end
 
   def show
+    @order = Order.find(params[:id])
+    # ここでも使える？？
+    @total_item_price = params[:order][:total_item_price]
   end
 
   private
