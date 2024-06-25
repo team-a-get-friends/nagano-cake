@@ -1,6 +1,8 @@
+<!--他の機能確認のため退避-->
+
 <!--カートに選んだ商品データを送信する-->
-<%= form_with model:@cart_item, cart_item_path, method: :post, local:true do |f| %>
-	<%= f.hidden_field :item_id, :value => @item.id %>
-	<%= f.select :amount, *[1..10] %>
-	<%= f.submit "カートに入れる" %>
-<% end %>
+<!--%= form_with model: @cart_item, cart_items_path, method: :post, local:true do |f| %>-->
+<!--	%= f.hidden_field :item_id, :value => @item.id %>-->
+<!--	%= f.select :amount, (1..10).to_a %>-->
+<!--	%= f.submit "カートに入れる" %>-->
+<!--% end %>-->

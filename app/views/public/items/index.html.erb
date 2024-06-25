@@ -1,1 +1,15 @@
-商品一覧
+<h2>商品一覧</h2>
+（全<%= @items.count %>件）
+
+<% @items.each do |item| %>
+
+  <%= link_to item_path(item.id) do %>
+    <%= image_tag item.get_item_image(100,100) %>
+  <% end %>
+  <%= item.name %>
+  ￥<%= item.price %>
+
+<% end %>
+
+<!--ページ送りを追加（表示するには、商品が８件以上必要）-->
+<%= paginate @items %>
