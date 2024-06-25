@@ -1,0 +1,33 @@
+<h2>注文履歴一覧</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>購入日時</th>
+      <th>購入者</th>
+      <th>注文個数</th>
+      <th>(注文ステータス)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @orders.each do |order| %>
+    <tr>
+      <!--時間の表記要修正-->
+      <%= order.created_at %>
+    </tr>
+    <tr>
+      <%= Customer.find(order.customer_id).last_name %>
+      <%= Customer.find(order.customer_id).first_name %>
+    </tr>
+    <tr>
+      <!--order_detailから、数量の合計の算出が必要-->
+      <!--%= order.total_amount %>-->
+    </tr>
+    <tr>
+      <!--必須ではない、最後→enumとの組み合わせで表現-->
+      <!--%= order.status %>-->
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+

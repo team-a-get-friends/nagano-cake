@@ -1,11 +1,13 @@
 class CartItem < ApplicationRecord
 
-belongs_to :customer
-belongs_to :item
-belongs_to :order, optional: true
+  belongs_to :customer
+  belongs_to :item
+  # optional true? 退避：, optional: true
+  belongs_to :order
 
-def subtotal
-  item.price_including_tax * quantity
-end
+# 小計の計算はamountでは？Itemモデルにも定義
+  def subtotal
+    item.price_including_tax * quantity
+  end
 
 end

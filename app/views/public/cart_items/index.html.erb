@@ -1,6 +1,11 @@
-<h3 class="mx-3 my-3 text-secondary">ショッピングカート</h3>
+<div class="row p-1">
+    <h4 class="mx-3 my-3 text-secondary border border-3 rounded-top col-3 text-center" alt="...">ショッピングカート</h4>
+  <div class="mt-auto mb-auto">
+    <%= link_to "カートを空にする", destroy_all_cart_items_path ,method: :delete, class:"btn btn-outline-danger ml-3 btn-sm" %>
+  </div>
+</div>
 
-<%= link_to "カートを空にする", destroy_all_cart_items_path ,method: :delete, class:"btn btn-outline-danger ml-3 btn-sm" %>
+
 
 <table class="table table-hover align-middle text-secondary">
   <thead>
@@ -26,28 +31,40 @@
       <td><%= cart_item.subtotal %></td>
       <td><%= link_to "削除する", cart_item_path(cart_item.id), class:"btn btn-outline-danger ml-3 btn-sm" %></td>
     </tr>
-  </tbody>
-</table>
-
-	    <% @total_item_price += cart_item.subtotal %>
+	      <% @total_item_price += cart_item.subtotal %>
     <% end %>
-
-<table class="table table-hover align-middle col-3 text-secondary">
-  <tbody>
-    <td>合計金額</td>
-    <td><%= @total_item_price %></td>
   </tbody>
 </table>
+
+<div class="row justify-content-end">
+  <div class="col-3">
+  <table class="table table-hover align-middle text-secondary">
+    <tbody>
+      <td>合計金額</td>
+      <td><%= @total_item_price %></td>
+    </tbody>
+  </table>
+  </div>
+</div>
 
 <div class="text-left">
   <%= link_to "買い物を続ける", root_path, class:"btn btn-outline-primary ml-3 btn-sm" %>
 </div>
 
-<div class="text-center">
-  <%= link_to "情報入力に進む", new_order_path, class:"btn btn-outline-success ml-3 btn-sm" %>
-</div>
-
 <!--hidden_fieldを使用して注文確認画面に合計金額を送る-->
-<% form_with model: @order, url: confirm_orders_path, method: :post do |f| %>
+<!--confirmページに送ればよい？変更：methodを指定しない（get）-->
+<%= form_with model: @order, url: confirm_orders_path do |f| %>
 	<% f.hidden_field :total_item_price, value: @total_item_price %>
+	<!--formaction:指定した先に移動させる-->
+	<div class="justify-content-center row">
+	  <%= f.submit "情報入力に進む", class:"text-center btn btn-outline-success ml-3 btn-sm" %>
+	</div>
 <% end %>
+
+
+<script>
+  document.querySelector("form").addEventListener("submit", function(event) {
+    event.preventDefault(); // デフォルトのフォーム送信をキャンセル
+    window.location.href = "<%= new_order_path %>"; // 新しい注文ページにリダイレクト
+  });
+</script>

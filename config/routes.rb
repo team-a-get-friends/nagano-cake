@@ -20,7 +20,7 @@ Rails.application.routes.draw do
           patch 'withdraw'
         end
       end
-      resources :cart_items, only: [:index, :update, :destroy, :crete] do
+      resources :cart_items, only: [:index, :update, :destroy, :create] do
         collection do
         delete 'destroy_all'
         end
@@ -28,7 +28,8 @@ Rails.application.routes.draw do
       resources :orders, only: [:new, :create, :index, :show] do
         collection do
           get 'confirm'
-          get 'complete'
+          # アプリケーション詳細設計書に合わせて修正
+          get 'thanks'
         end
       end
       resources :addresses, except: [:new, :show]

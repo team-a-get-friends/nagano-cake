@@ -1,31 +1,50 @@
+<<<<<<< HEAD
 
     <div class="col">
     	<div class="d-flex align-items-center">
 <%= form_with model:Item, local:true do |f| %>
+=======
+<%= form_with model:item, url: url, local:true do |f| %>
+>>>>>>> origin/develop
 
-	<%= f.label :"商品画像" %>
-	<%= f.file_field :item_image, accept: 'image/*' %>
+  <div class="form-group">
+		<%= f.label :item_image, "商品画像" %>
+		<%= f.file_field :item_image, accept: 'image/*' %>
+  </div>
 
-	<%= f.label :"商品名" %>
-	<%= f.text_field :name, placeholder: "商品名" %>
+  <div class="form-group">
+		<%= f.label :name, "商品名" %>
+		<%= f.text_field :name, placeholder: "商品名" %>
+  </div>
 
-	<%= f.label :"商品説明" %>
-	<%= f.text_area :item_detail,placeholder: "ここに説明文を記述します" %>
 
-	<%= f.label :"ジャンル" %>
-	<%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id,:name) %>
+  <div class="form-group">
+		<%= f.label :item_detail, "商品説明" %>
+		<%= f.text_area :item_detail, placeholder: "ここに説明文を記述します" %>
+  </div>
 
-	<%= f.label :"税抜価格" %>
-	<%= f.text_field :price, placeholder: "1000" %>円
+  <div class="form-group">
+		<%= f.label :genre_id, "ジャンル" %>
+		<%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id,:name) %>
+  </div>
 
-	<%= f.label :"販売ステータス" %>　or <p>販売ステータス</p>
-	<%= f.radio_button :is_active, "true" %>
-	<%= f.label :is_active_true, "販売中"%>
-	<%= f.radio_button :is_active, "false" %>
-	<%= f.label :is_active_false, "販売停止中"%>
+  <div class="form-group">
+		<%= f.label :price, "税抜価格" %>
+		<%= f.text_field :price, placeholder: "1000" %>円
+  </div>
 
-	<%= f.submit  "新規登録"%>
+  <div class="form-group">
+		<%= f.label :is_active, "販売ステータス" %>
+		<%= f.radio_button :is_active, true %>
+		<%= f.label :is_active_true, "販売中" %>
+		<%= f.radio_button :is_active, false %>
+		<%= f.label :is_active_false, "販売停止中"%>
+  </div>
 
+<!--idの有無で表記を分岐する-->
+  <div class="form-group">
+		<%= f.submit  "新規登録"%>
+  </div>
 
 <% end %>
 			</div>

@@ -1,0 +1,25 @@
+<%= form_with model:address do |f| %>
+<table class="table table-borderless text-secondary">
+  <tr>
+    <td><%= f.label :post_code, "郵便番号（ハイフンなし）" %></td>
+    <td><%= f.text_field :post_code, placeholder: "0000000" %></td><br>
+  </tr>
+    
+  <tr>
+    <td><%= f.label :address, "住所" %></td>
+    <td><%= f.text_field :address, placeholder: "東京都渋谷区神園町0-0" %></td><br>
+  </tr>
+  
+  <tr>
+    <td><%= f.label :name, "宛名" %></td>
+    <td><%= f.text_field :name, placeholder: "令和道子" %></td>
+<!--【？】分岐について質問-->
+    <% if address.id == nil %>
+    <td><%= f.submit "新規登録", class:"btn btn-outline-success ml-3 btn-sm" %></td>
+  </tr>
+  
+  <% else %>
+    <%= f.submit "変更内容を保存", class:"btn btn-outline-success ml-3 btn-sm" %>
+  <% end %>
+
+<% end %>

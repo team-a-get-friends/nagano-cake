@@ -18,7 +18,8 @@
             <!--会員ID-->
             <td><%= customer.id %></td>
             <!--氏名(英語で記述時はlast_nameを先にして表示では逆になりのでfirst, lastの順番で表示される)-->
-            <td><%= customer.last_name %> <%= customer.first_name %></td>
+            <!--フルネーム表示のためのメソッドを定義して、それをリンクにする-->
+            <td><%= link_to customer.last_name, admin_customer_path(customer.id) %> <%= customer.first_name %></td>
             <!--メールアドレス-->
             <td><%= customer.email %></td>
             <!--ステータス-->

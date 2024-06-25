@@ -1,4 +1,4 @@
-<h2>新規会員登録</h2>
+<h4 class="mx-3 my-3 text-secondary border border-3 rounded-top col-3 text-center" alt="...">新規会員登録</h4>
 
 <%= form_with model:@customer,url: customer_registration_path do |f| %>
   <%= render "public/shared/error_messages", resource: resource %>
@@ -56,11 +56,11 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "新規登録" %>
+    <%= f.submit "新規登録", class:"text-center btn btn-outline-success ml-3 btn-sm" %>
   </div>
 <% end %>
 
-<h2>既に登録済みの方</h2>
+<h4 class="mx-3 my-3 text-secondary border border-3 rounded-top col-3 text-center" alt="...">既に登録済みの方</h4>
 
 <%= link_to "こちら", new_customer_session_path %>
  からログインしてください。
