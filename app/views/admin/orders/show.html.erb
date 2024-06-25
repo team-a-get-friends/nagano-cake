@@ -1,26 +1,36 @@
 <h2>注文履歴詳細</h2>
 
-<p>購入者</p>
-<%= @order.customer.last_name %>
-<%= @order.customer.first_name %>
+<div class="form-group">
+  <p>購入者</p>
+  <%= @order.customer.full_name %>
+</div>
 
-<p>注文日</p>
-<%= @order.created_at %>
+<div class="form-group">
+  <p>注文日</p>
+  <%= @order.created_at.strftime("%Y/%m/%d %H:%M") %>
+</div>
 
-<p>配送先</p>
-〒<%= @order.post_code %><br>
-<%= @order.address %><br>
-<%= @order.name %>
+<div class="form-group">
+  <p>配送先</p>
+  〒<%= @order.post_code %> <%= @order.address %><br>
+  <!--nameの表示を逆に修正-->
+  <%= @order.name %>
+</div>
 
-<p>支払方法</p>
-<%= @order.payment_method %>
+<div class="form-group">
+  <p>支払方法</p>
+  <!--表示を日本語化する必要あり-->
+  <%= @order.payment_method %>
+</div>
 
-<p>注文ステータス</p>
-<!--セレクト-->
-<%= form_with model: @order, url: admin_order_path, method: :patch do |f| %>
-  <%= f.select :status, Order.statuses %>
-  <%= f.submit "更新" %>
-<% end %>
+<div class="form-group">
+  <p>注文ステータス</p>
+  <!--セレクト-->
+  <%= form_with model: @order, url: admin_order_path(@order.id), method: :patch do |f| %>
+    <%= f.select :status, Order.statuses.keys.map {|k| [I18n.t("enum.order.status.#{k}"),k]} %>
+    <%= f.submit "更新" %>
+  <% end %>
+</div>
 
 <table>
   <thead>
@@ -51,7 +61,7 @@
       <td>
       <%= form_with model: order_detail, url: admin_order_detail_path(order_detail.id), method: :patch do |f| %>
         <!--このままだと英語になってしまう、mapメソッドを使用すると日本語にできる-->
-        <%= f.select :making_status, OrderDetail.making_statuses.keys %>
+        <%= f.select :making_status, OrderDetail.making_statuses.keys.map {|k| [I18n.t("enum.order_details.making_status.#{k}"),k]} %>
         <%= f.submit "更新" %>
       <% end %>
       </td>

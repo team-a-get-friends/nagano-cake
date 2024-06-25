@@ -4,7 +4,8 @@ class Admin::CustomersController < ApplicationController
 
   def index
     #管理者の顧客一覧記述
-    @customers = Customer.all
+    #ページネーション対応に変更
+    @customers = Customer.page(params[:page])
   end
 
   def show
@@ -28,7 +29,8 @@ class Admin::CustomersController < ApplicationController
   private
   #安全に更新できる属性のみを送信する
   def customer_params 
-    params.require(:customer).permit(:last_name, :first_name, :kana_last_name, :kana_first_name, :email, :post_code, :address, :phone_number, :is_deleted)
+    # カラム名修正（is_deleted→is_active）
+    params.require(:customer).permit(:last_name, :first_name, :kana_last_name, :kana_first_name, :email, :post_code, :address, :phone_number, :is_active)
   end
 
 end

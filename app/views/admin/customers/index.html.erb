@@ -19,15 +19,18 @@
             <td><%= customer.id %></td>
             <!--氏名(英語で記述時はlast_nameを先にして表示では逆になりのでfirst, lastの順番で表示される)-->
             <!--フルネーム表示のためのメソッドを定義して、それをリンクにする-->
-            <td><%= link_to customer.last_name, admin_customer_path(customer.id) %> <%= customer.first_name %></td>
+            <td><%= link_to customer.full_name, admin_customer_path(customer.id) %></td>
             <!--メールアドレス-->
             <td><%= customer.email %></td>
             <!--ステータス-->
               <!--No Method Error発生でdeletedをactiveに変更-->
            <!--<td class="<%#= customer.is_deleted ? 'text-gray' : 'text-green' %>"><%#= customer.is_deleted ? '退会済み' : '有効' %></td>-->
-           <td class="<%= customer.is_active ? 'text-gray' : 'text-green' %>"><%= customer.is_active ? '退会済み' : '有効' %></td>
+           <!--三項演算子は式、true、falseの順-->
+           <td class="<%= customer.is_active ? 'text-green' : 'text-gray' %>"><%= customer.is_active ? '有効' : '退会' %></td>
           </tr>
         <% end %>
       </table>
   </div>
 </div>
+
+  <%= paginate @customers %>

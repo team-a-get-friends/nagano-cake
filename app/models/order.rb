@@ -5,7 +5,9 @@ class Order < ApplicationRecord
   has_many :order_details, dependent: :destroy
   
   # enumに関わる記述
+  # 支払方法
   enum payment_method: { credit_card: 0, transfer: 1 }
+  # 注文
   enum status: { waiting_for_payment: 0, confirming_payment: 1, in_making: 2, preparing: 3, completed: 4 }
 
   #   以下記述は不要？要修正
