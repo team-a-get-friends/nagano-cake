@@ -14,9 +14,11 @@
     <% @cart_items.each do |cart_item| %>
     <tr>
       <td><%= cart_item.item.name %></td>
-      <td><%= cart_item.with_tax_price %></td>
+      <!--モデルが異なっても呼び出しできるが、当該のモデルの呼び出しも必要-->
+      <td><%= cart_item.item.with_tax_price %></td>
       <td>
-        <% form_with model: @cart_item, url: cart_item_path, method: :patch do |f| %>
+        <!--each分の中はインスタンス変数ではない-->
+        <% form_with model: cart_item, url: cart_item_path(cart_item.id), method: :patch do |f| %>
           <%= f.select :amount, *[1..10] %>
           <%= f.submit %>
         <% end %>
@@ -24,11 +26,10 @@
       <td><%= cart_item.subtotal %></td>
       <td><%= link_to "削除する", cart_item_path(cart_item.id) %></td>
     </tr>
+    <% @total_item_price += cart_item.subtotal %>
+  <% end %>
   </tbody>
 </table>
-
-	    <% @total_item_price += cart_item.subtotal %>
-    <% end %>
 
 <table>
   <tbody>
@@ -43,7 +44,7 @@
 
 <!--hidden_fieldを使用して注文確認画面に合計金額を送る-->
 <!--confirmページに送ればよい？変更：methodを指定しない（get）-->
-<%= form_with model: @order, url: confirm_orders_path do |f| %>
+<%= form_with model: @order, url: orders_confirm_path do |f| %>
 	<% f.hidden_field :total_item_price, value: @total_item_price %>
 	<!--formaction:指定した先に移動させる-->
 	<%= f.submit "情報入力に進む" %>

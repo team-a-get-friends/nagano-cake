@@ -4,11 +4,11 @@
 <!--フォームが表示されない？？-->
 <!--いったん退避：, method: :post-->
 <!--, url: confirm_orders_path-->
-<%= form_with model: @order do |f| %>
+<%= form_with model: @order, url: orders_confirm_path, method: :post do |f| %>
 
-<!--ラジオボタン_クレジットカード-->
-<%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
-<%= f.label :payment_method_credit_card, Order.payment_methods_i18n[:credit_card] %>
+  <!--ラジオボタン_クレジットカード-->
+  <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
+  <%= f.label :payment_method_credit_card, Order.payment_methods_i18n[:credit_card] %>
 
   <!--ラジオボタン_銀行振込-->
   <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>

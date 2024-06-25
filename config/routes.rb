@@ -25,9 +25,12 @@ Rails.application.routes.draw do
         delete 'destroy_all'
         end
       end
+      # showより先に定義
+      post 'orders/confirm' => "orders#confirm"
       resources :orders, only: [:new, :create, :index, :show] do
         collection do
-          get 'confirm'
+          # 先にshowが検索されてしまうのでconfirmをshowより上に呼び出したい
+          # post 'confirm'
           # アプリケーション詳細設計書に合わせて修正
           get 'thanks'
         end

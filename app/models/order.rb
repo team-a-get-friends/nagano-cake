@@ -12,10 +12,17 @@ class Order < ApplicationRecord
   #   enum order_status: {入金待ち:0, 入金確認:1, 製作中:2, 発送準備中:3, 発送済み:4}
   
   # 送料について定義
+  # モデルには定数を書くべきでない
   SHIPPING_FEE = 800
   
-  def self.shipping_fee
+  # ただの数字の呼び出しになってしまい、機能しない
+  def self.get_shipping_fee
     SHIPPING_FEE
+  end
+  
+    # 登録している情報から住所を一連で表示させるためのメソッド
+  def address_display
+  '〒' + post_code + ' ' + address + ' ' + name
   end
   
 end

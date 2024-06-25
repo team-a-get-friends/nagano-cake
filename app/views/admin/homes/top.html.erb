@@ -10,22 +10,15 @@
     </tr>
   </thead>
   <tbody>
-    <% @orders.each do |order| %>
+  <% @orders.each do |order| %>
     <tr>
-      <!--時間の表記要修正-->
-      <%= order.created_at %>
-    </tr>
-    <tr>
-      <%= Customer.find(order.customer_id).last_name %>
-      <%= Customer.find(order.customer_id).first_name %>
-    </tr>
-    <tr>
-      <!--order_detailから、数量の合計の算出が必要-->
-      <!--%= order.total_amount %>-->
-    </tr>
-    <tr>
+      <td><%= link_to order.created_at.strftime("%Y/%m/%d %H:%M"),admin_order_path(order.id) %></td>
+      <td><%= order.customer.last_name %><%= order.customer.first_name %></td>
+      <td><%= order.order_details.sum(:amount) %></td>
+      <td>
       <!--必須ではない、最後→enumとの組み合わせで表現-->
       <!--%= order.status %>-->
+      </td>
     </tr>
     <% end %>
   </tbody>

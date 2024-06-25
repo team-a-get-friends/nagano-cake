@@ -19,11 +19,7 @@ class Item < ApplicationRecord
 
   # 金額算出のメソッドを定義
   def with_tax_price
-  (price*1.1).floor
-  end
-
-  def subtotal
-    item.with_tax_price * amount
+    (price*1.1).floor
   end
 
   def get_item_image(width,height)
