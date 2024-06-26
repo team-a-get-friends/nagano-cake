@@ -27,7 +27,7 @@
   <p>注文ステータス</p>
   <!--セレクト-->
   <%= form_with model: @order, url: admin_order_path(@order.id), method: :patch do |f| %>
-    <%= f.select :status, Order.statuses.keys.map {|k| [I18n.t("enum.order.status.#{k}"),k]} %>
+    <%= f.select :status, Order.statuses.keys.map {|k| [I18n.t("enums.order.status.#{k}"), k]} %>
     <%= f.submit "更新" %>
   <% end %>
 </div>
@@ -45,35 +45,34 @@
   <tbody>
     <% @order.order_details.each do |order_detail| %>
     <tr>
+      <td>
       <%= order_detail.item.name %>
-    </tr>
-    <tr>
-      <%= order_detail.item.price %>
-    </tr>
-    <tr>
+      </td>
+      <td>
+      <%= order_detail.item.with_tax_price %>
+      </td>
+      <td>
       <%= order_detail.amount %>
-    </tr>
-    <tr>
+      </td>
+      <td>
       <%= order_detail.subtotal %>
-    </tr>
-
-    <tr>
+      </td>
       <td>
       <%= form_with model: order_detail, url: admin_order_detail_path(order_detail.id), method: :patch do |f| %>
         <!--このままだと英語になってしまう、mapメソッドを使用すると日本語にできる-->
-        <%= f.select :making_status, OrderDetail.making_statuses.keys.map {|k| [I18n.t("enum.order_details.making_status.#{k}"),k]} %>
+        <%= f.select :making_status, OrderDetail.making_statuses.keys.map {|k| [I18n.t("enums.order_detail.making_status.#{k}"), k]} %>
         <%= f.submit "更新" %>
       <% end %>
       </td>
     </tr>
+      <% @total_item_price += order_detail.subtotal %>
     <% end %>
   </tbody>
 </table>
 
 <p>商品合計</p>
-<% @total_item_price %>
+<%= @total_item_price %>
 <p>送料</p>
-<% @order.shipping_fee %>
+<%= @order.shipping_fee %>
 <p>請求合計金額</p>
-<% @order.total_price %>
-
+<%= @order.total_price %>

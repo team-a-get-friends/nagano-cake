@@ -23,11 +23,11 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
     <% @orders.each do |order| %>
+    <tr>
       <td>
         <!--表示方法を変更する必要あり-->
-        <%= order.created_at %>
+        <%= order.created_at.strftime("%Y/%m/%d %H:%M") %>
       </td>
       <td>
         〒<%= order.post_code %><br>
@@ -44,12 +44,17 @@
         <%= order.total_price %>円
       </td>
       <td>
+        <!--いったん退避：.to_i.map.i18n.("enums.order.status")-->
         <%= order.status %>
+
+        <!--参考-->
+        <!--%= f.select :status, Order.statuses.keys.map {|k| [I18n.t("enums.order.status.#{k}"), k]} %>-->
+
       </td>
       <td>
         <%= link_to "表示する", order_path(order.id) %>
       </td>
-    <% end %>
     </tr>
+    <% end %>
   </tbody>
 </table>

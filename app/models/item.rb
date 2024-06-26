@@ -23,9 +23,8 @@ class Item < ApplicationRecord
   end
 
   def get_item_image(width,height)
-  	item_image.variant(resize_to_limit: [width,height]).processed
-    #item_imageが保存されていればtrue,されていなければno_image.jpgを
-    (item_image.attached?) ? item_image : 'no_image.jpg'
+    # 三項演算子：（item_imageはある？）true=>サイズを変更して表示　false=>no_image.jpgを
+    (item_image.attached?) ? item_image.variant(resize_to_limit: [width,height]).processed : 'no_image.jpg'
   end
 
   #検索機能を追加するときはに定義

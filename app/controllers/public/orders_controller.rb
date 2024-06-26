@@ -12,9 +12,11 @@ class Public::OrdersController < ApplicationController
     # カートアイテムを保存するときにcustomer_idは保存している
     # @cart_items.customer_id = current_customer.id
 
-	  @total_item_price = params[:order][:total_item_price]
+    #DRYに反するけど、各ページで計算する
+	 # @total_item_price = params[:cart_item][:total_item_price]
 
-    @order = Order.new(order_params)
+    # newはまだからでは？退避：(order_params)
+    @order = Order.new
     @order.payment_method = params[:order][:payment_method]
 	  #請求金額を商品合計と送料の和で算出
 	  #送料はOrderモデルで定義したものを呼び出す
@@ -87,13 +89,18 @@ class Public::OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     # ここでも使える？？
-    @total_item_price = params[:order][:total_item_price]
+    # @total_item_price = params[:order][:total_item_price]
   end
 
   private
 
   def order_params
-    params.require(:order).permit(:customer_id,:payment_method,:post_code,:address,:name,:total_price,:status,:shipping_fee)
+    params.require(:order).permit(:customer_id,:payment_method,:post_code,:address,:name,:total_price,:status,:shipping_fee,:total_item_price)
+  end
+
+  # total_item_price受け取るための試行錯誤
+  def cart_item_params
+    params.require(:cart_item).permit(:total_item_price)
   end
 
 end
