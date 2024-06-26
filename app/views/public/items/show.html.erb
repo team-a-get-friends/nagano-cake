@@ -1,8 +1,11 @@
-<!--他の機能確認のため退避-->
+<%= image_tag @item.get_item_image(150,150) %>
+<%= @item.name %>
+<%= @item.item_detail %>
+￥<%= @item.with_tax_price %>（税込）
 
 <!--カートに選んだ商品データを送信する-->
-<!--%= form_with model: @cart_item, cart_items_path, method: :post, local:true do |f| %>-->
-<!--	%= f.hidden_field :item_id, :value => @item.id %>-->
-<!--	%= f.select :amount, (1..10).to_a %>-->
-<!--	%= f.submit "カートに入れる" %>-->
-<!--% end %>-->
+<%= form_with model: @cart_item, url: cart_items_path, method: :post, local:true do |f| %>
+	<%= f.hidden_field :item_id, :value => @item.id %>
+	<%= f.select :amount, 1..10, include_blank:"個数選択" %>
+	<%= f.submit "カートに入れる" %>
+<% end %>

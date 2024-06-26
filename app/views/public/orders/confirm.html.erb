@@ -11,7 +11,7 @@
   </thead>
   <tbody>
     <tr>
-    <%= @cart_items.each do |cart_item| %>
+    <% @cart_items.each do |cart_item| %>
       <td>
         <%= cart_item.item.name %>
       </td>
@@ -24,23 +24,45 @@
       <td>
         <%= cart_item.subtotal %>
       </td>
+      <% @total_item_price += cart_item.subtotal %>
     <% end %>
     </tr>
   </tbody>
 </table>
 
 <table class='table'>
-    <tr>
-      <th>送料</th><td><%= Order.shipping_fee%></td>
-      <th>商品合計</th><td><%= @total_item_price %></td>
-      <th>請求金額</th><td><%= @order.total_price %></td>
-    </tr>
+  <tr>
+    <th>送料</th><td><%= @order.shipping_fee%></td>
+  </tr>
+  <tr>
+    <th>商品合計</th><td><%= @total_item_price %></td>
+  </tr>
+  <tr>
+    <th>請求金額</th>
+    <td>
+      <% @order.total_price += @order.shipping_fee + @total_item_price %>
+      <%= @order.total_price %>
+    </td>
+  </tr>
 </table>
 
 <p>支払方法</p>
-<%= @order.payment_method %>
+<!--末尾に_i18nすることで日本語化-->
+<%= @order.payment_method_i18n %>
 
 <p>お届け先</p>
 <%= @order.address_display %>
 
-<%= link_to "注文を確定する", orders_path, method: :post %>
+<!--link_toではデータを送ることができない→form_with-->
+<!--hidden_fieldで情報を送ることができる-->
+<%= form_with model: @order, url: orders_path, method: :post do |f| %>
+  <!--必要な情報をすべて送る必要がある-->
+	<%= f.hidden_field :customer_id, :value => current_customer.id %>
+	<%= f.hidden_field :post_code, :value => @order.post_code %>
+	<%= f.hidden_field :address, :value => @order.address %>
+	<%= f.hidden_field :name, :value => @order.name %>
+	<%= f.hidden_field :shipping_fee, :value => @order.shipping_fee %>
+	<%= f.hidden_field :total_price, :value => @order.total_price %>
+	<%= f.hidden_field :payment_method, :value => @order.payment_method %>
+  <%= f.submit "注文を確定する" %>
+<% end %>

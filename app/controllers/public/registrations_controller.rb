@@ -38,6 +38,12 @@ class Public::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
+  # 新規登録後はマイページに移動（テスト仕様書より）
+  def after_sign_up_path_for(resource)
+	  customer_path(current_customer.id)
+  end
+
+
   protected
 
   # If you have extra params to permit, append them to the sanitizer.
