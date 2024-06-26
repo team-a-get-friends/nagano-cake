@@ -45,7 +45,7 @@
       </td>
       <td>
         <!--いったん退避：.to_i.map.i18n.("enums.order.status")-->
-        <%= order.status %>
+        <%= order.status_i18n %>
 
         <!--参考-->
         <!--%= f.select :status, Order.statuses.keys.map {|k| [I18n.t("enums.order.status.#{k}"), k]} %>-->

@@ -6,6 +6,10 @@ class CartItem < ApplicationRecord
   # 不要なアソシエーション
   # belongs_to :order
 
+  #バリデーションを設定
+  validates :customer_id, presence:true
+  validates :amount, presence:true
+
   def subtotal
     item.with_tax_price * amount
   end

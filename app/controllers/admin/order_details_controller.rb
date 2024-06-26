@@ -6,6 +6,7 @@ class Admin::OrderDetailsController < ApplicationController
     @order_detail = OrderDetail.find(params[:id])
     @order_detail.update(order_detail_params)
     redirect_to admin_order_path(@order_detail.order_id)
+    # 関連するorderを呼び出して連動させられる
   end
 
   private

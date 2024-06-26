@@ -13,6 +13,12 @@ class Order < ApplicationRecord
   #   以下記述は不要？要修正
   #   enum order_status: {入金待ち:0, 入金確認:1, 製作中:2, 発送準備中:3, 発送済み:4}
 
+  # バリデーションの設定
+  validates :payment_method, presence:true
+  validates :address, presence:true
+  validates :post_code, presence:true
+  validates :name, presence:true
+
   # 送料について定義
   # モデルには定数を書くべきでない
   SHIPPING_FEE = 800

@@ -12,8 +12,7 @@ class Public::OrdersController < ApplicationController
     # カートアイテムを保存するときにcustomer_idは保存している
     # @cart_items.customer_id = current_customer.id
 
-    #DRYに反するけど、各ページで計算する
-	 # @total_item_price = params[:cart_item][:total_item_price]
+	  @total_item_price = 0
 
     # newはまだからでは？退避：(order_params)
     @order = Order.new
@@ -27,7 +26,7 @@ class Public::OrdersController < ApplicationController
 	        p 00000
 		      @order.post_code = current_customer.post_code
 		      @order.address = current_customer.address
-		      @order.name = current_customer.first_name + current_customer.last_name
+		      @order.name = current_customer.last_name + current_customer.first_name
 	      when "1"
 	        p 11111
 		      @address = Address.find(params[:order][:address_id])
@@ -90,6 +89,7 @@ class Public::OrdersController < ApplicationController
     @order = Order.find(params[:id])
     # ここでも使える？？
     # @total_item_price = params[:order][:total_item_price]
+    @total_item_price = 0
   end
 
   private

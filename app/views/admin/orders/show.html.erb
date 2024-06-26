@@ -13,14 +13,14 @@
 <div class="form-group">
   <p>配送先</p>
   〒<%= @order.post_code %> <%= @order.address %><br>
-  <!--nameの表示を逆に修正-->
+  <!--nameの表示を逆に修正→orders_controllerのconfirmアクションを修正-->
   <%= @order.name %>
 </div>
 
 <div class="form-group">
   <p>支払方法</p>
   <!--表示を日本語化する必要あり-->
-  <%= @order.payment_method %>
+  <%= @order.payment_method_i18n %>
 </div>
 
 <div class="form-group">
@@ -32,7 +32,7 @@
   <% end %>
 </div>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <td>商品名</td>

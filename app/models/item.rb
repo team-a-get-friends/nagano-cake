@@ -17,6 +17,9 @@ class Item < ApplicationRecord
 
   has_one_attached :item_image
 
+  # 新着標品を表示させる
+  scope :latest, -> {order(created_at: :desc)}
+
   # 金額算出のメソッドを定義
   def with_tax_price
     (price*1.1).floor

@@ -9,7 +9,10 @@ class Public::CartItemsController < ApplicationController
   end
 
   def update
-    @cart_item = CartItem.find(params[:cart_item_id])
+    @cart_item = CartItem.find(params[:id])
+    @cart_item.amount = params[:cart_item][:amount]
+    @cart_item.update(cart_item_params)
+    redirect_to cart_items_path
   end
 
   def destroy
@@ -19,7 +22,8 @@ class Public::CartItemsController < ApplicationController
   end
 
   def destroy_all
-
+    CartItem.destroy_all
+    redirect_to cart_items_path
   end
 
   def create
@@ -33,10 +37,12 @@ class Public::CartItemsController < ApplicationController
 	    cart_item.update(amount: cart_item.amount)
 	    redirect_to cart_items_path
     else
+      # バリデーションが必要（ないとエラー画面に
       if cart_item.save
 	      redirect_to cart_items_path
       else
-        redirect_to item_path(item_id)
+        # item_idではidは取得できない
+        redirect_to item_path(params[:cart_item][:item_id])
       end
     end
   end
