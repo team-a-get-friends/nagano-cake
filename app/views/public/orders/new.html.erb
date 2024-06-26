@@ -1,12 +1,12 @@
-<h2>注文情報</h2>
-<p>支払方法</p>
+<h4 class="mx-3 my-5 text-secondary border border-3 rounded-top col-3 text-center" alt="...">注文情報</h4>
+  <h4 class="text-secondary mx-3 my-3"><b>支払方法</b></h4>
 
 <!--フォームが表示されない？？-->
 <!--いったん退避：, method: :post-->
 <!--, url: confirm_orders_path-->
 <%= form_with model: @order, url: orders_confirm_path, method: :post do |f| %>
 
-  <div class="form-group">
+  <div class="form-group text-secondary mx-4 my-1">
     <!--ラジオボタン_クレジットカード-->
     <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
     <%= f.label :payment_method_credit_card, Order.payment_methods_i18n[:credit_card] %>
@@ -15,19 +15,22 @@
     <%= f.label :payment_method_transfer, Order.payment_methods_i18n[:transfer]%>
   </div>
 
-  <div class="form-group">
+    <h4 class="text-secondary mx-3 my-3"><b>お届け先</b></h4>
+  <div class="form-group text-secondary mx-4 my-3">
     <!--配送先選択 ３つ-->
     <!--customerモデルから自分の登録している住所を選択できるラジオボタン-->
     <!--[]内の複数のカラムのデータをラジオボタンで送る-->
-    <%= f.radio_button :select_address, 0 %>
-    <%= f.label :select_address, "ご自身の住所" %>
-    〒<%= @customer.post_code %>
-     <%= @customer.address %>
-    <%= @customer.last_name %>
-    <%= @customer.first_name %>
+      <%= f.radio_button :select_address, 0 %>
+      <%= f.label :select_address, "ご自身の住所" %>
+    <div class="text-secondary mx-4">
+      〒<%= @customer.post_code %>
+       <%= @customer.address %>
+      <%= @customer.last_name %>
+      <%= @customer.first_name %>
+    </div>
   </div>
 
-  <div class="form-group">
+  <div class="form-group text-secondary mx-4 my-3">
     <!--addressモデルから登録されている住所をセレクトボックスで選択できるラジオボタン-->
     <!--ラジオボタンで登録済みの住所が選択された＝1を「select_address」というキーで送付-->
     <%= f.radio_button :select_address, 1 %>
@@ -36,18 +39,18 @@
     <%= f.select :address_id, options_from_collection_for_select(Address.all, :id, :address_display) %>
   </div>
 
-  <div class="form-group">
+  <div class="form-group text-secondary mx-4 my-1">
     <!--addressモデルに新たに登録し、その住所を配送先に選択できるラジオボタン-->
     <%= f.radio_button :select_address, 2 %>
     <%= f.label :address_id, "新しいお届け先" %>
     <%= f.label :post_code, "郵便番号（ハイフンなし）" %>
-    <%= f.text_field :post_code %>
+    <%= f.text_field :post_code, class:"border border-secondary form-text text-muted form-control-sm" %>
     <%= f.label :post_code, "住所" %>
-    <%= f.text_field :address %>
+    <%= f.text_field :address, class:"border border-secondary form-text text-muted form-control-sm" %>
     <%= f.label :naem, "宛名" %>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, class:"border border-secondary form-text text-muted form-control-sm" %>
   </div>
 
-  <%= f.submit "確認画面へ進む" %>
+  <%= f.submit "確認画面へ進む", class:"btn btn-outline-primary ml-3 btn-sm" %>
 
 <% end %>
