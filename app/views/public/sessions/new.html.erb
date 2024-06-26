@@ -1,17 +1,23 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
 <h4 class="mx-3 my-3 text-secondary border border-3 rounded-top col-2 text-center" alt="...">ログイン</h4>
 
-<h5 class="mx-3 my-3 text-secondary"><b>会員の方はこちらからログイン</b></h5>
+<h5 class="mx-3 my-4 text-secondary border border-3 rounded-top col-4 text-center" alt="..."><b>会員の方はこちらからログイン</b></h5>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field text-secondary mx-3 my-3">
-    <%= f.label :email, "メールアドレス" %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "sample@example.com", class:"border border-secondary form-control-sm col-2" %>
-  </div>
-
-  <div class="field text-secondary mx-3 my-3">
-    <%= f.label :password, "パスワード" %><br />
-    <%= f.password_field :password, autocomplete: "current-password", class:"border border-secondary form-control-sm col-2" %>
-  </div>
+  <table class="field text-secondary mx-3 my-3">
+    <tr>
+    <td><%= f.label :email, "メールアドレス" %></td><br />
+    <td><%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "sample@example.com", class:"ml-3 border border-secondary col-8 form-control-sm" %></td>
+    </tr>
+    <tr>
+  <!--<div class="field text-secondary mx-3 my-3">-->
+    <td><%= f.label :password, "パスワード" %></td><br />
+    <td><%= f.password_field :password, autocomplete: "current-password", class:"ml-3 border border-secondary form-control-sm col-8" %></td>
+    </tr>
+  <!--</div>-->
+  </table>
 
   <div class="actions">
     <%= f.submit "ログイン", class:"btn btn-outline-primary ml-3 btn-sm" %>
@@ -20,9 +26,11 @@
 
 <%= render "public/shared/links" %>
 
-<h5 class="mx-3 my-3 text-secondary"><b>会員登録がお済でない方</b></h5>
+<h5 class="mx-3 my-3 text-secondary border border-3 rounded-top col-3 text-center" alt="..."><b>会員登録がお済でない方</b></h5>
 <div class="row p-3">
-  <%= link_to "こちら", new_customer_registration_path, class:"text-secondary ml-3 mr-2 my-3" %>
+  <b><%= link_to "こちら", new_customer_registration_path, class:"text-secondary ml-3 mr-2 my-3" %></b>
   <div class="text-secondary mt-auto mb-auto">から新規登録を行ってください。</div>
 </div>
- 
+  </div>
+  </div>
+</div>

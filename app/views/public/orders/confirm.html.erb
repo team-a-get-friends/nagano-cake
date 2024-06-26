@@ -1,6 +1,9 @@
-<h2>注文確認</h2>
+<div class="container">
+  <div class="row">
+    <div class="col">
+<h4 class="my-5 text-secondary border border-3 rounded-top text-center col-3" alt="...">注文確認</h4>
 
-<table class='table'>
+<table class='table table-hover align-middle text-secondary'>
   <thead>
     <tr>
       <th>商品名</th>
@@ -30,7 +33,7 @@
   </tbody>
 </table>
 
-<table class='table'>
+<table class='table table-hover align-middle text-secondary'>
   <tr>
     <th>送料</th><td><%= @order.shipping_fee%></td>
   </tr>
@@ -46,12 +49,15 @@
   </tr>
 </table>
 
-<p>支払方法</p>
+<div class="text-secondary mx-2 my-3">
+  <b>支払方法</b>
 <!--末尾に_i18nすることで日本語化-->
 <%= @order.payment_method_i18n %>
-
-<p>お届け先</p>
+</div>
+<div class="text-secondary mx-2 my-3">
+<b>お届け先</b>
 <%= @order.address_display %>
+</div>
 
 <!--link_toではデータを送ることができない→form_with-->
 <!--hidden_fieldで情報を送ることができる-->
@@ -64,5 +70,8 @@
 	<%= f.hidden_field :shipping_fee, :value => @order.shipping_fee %>
 	<%= f.hidden_field :total_price, :value => @order.total_price %>
 	<%= f.hidden_field :payment_method, :value => @order.payment_method %>
-  <%= f.submit "注文を確定する" %>
+  <%= f.submit "注文を確定する", class:"btn btn-outline-success ml-3 btn-sm" %>
 <% end %>
+ </div>
+  </div>
+</div>
