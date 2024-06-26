@@ -1,8 +1,7 @@
-<%= form_with model:item, url: url, local:true do |f| %>
+<%= form_with model:item, url: url, method: method, local:true do |f| %>
 
   <div class="form-group">
-		<%= f.label :item_image, "商品画像" %>
-		<%= f.file_field :item_image, accept: 'image/*' %>
+		<%= f.label :item_image, "商品画像" %><%= f.file_field :item_image, accept: 'image/*' %>
   </div>
 
   <div class="form-group">
@@ -18,7 +17,8 @@
 
   <div class="form-group">
 		<%= f.label :genre_id, "ジャンル" %>
-		<%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id,:name), include_blank: "--選択してください--" %>
+		<!--退避：, include_blank: "--選択してください--"-->
+		<%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id,:name) %>
   </div>
 
   <div class="form-group">
@@ -37,9 +37,9 @@
 <!--idの有無で表記を分岐する-->
   <div class="form-group">
 		<% if item.id == nil %>
-			<%= f.submit "新規登録" %>
+			<%= f.submit "新規登録", class:"btn btn-outline-success ml-2 btn-sm" %>
 		<% else %>
-			<%= f.submit "変更を保存" %>
+			<%= f.submit "変更を保存", class:"btn btn-outline-success ml-2 btn-sm" %>
 		<% end %>
   </div>
 

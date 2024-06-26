@@ -37,7 +37,7 @@ class Public::CartItemsController < ApplicationController
 	    cart_item.update(amount: cart_item.amount)
 	    redirect_to cart_items_path
     else
-      # バリデーションが必要（ないとエラー画面に
+      # バリデーションが必要（ないとエラー画面になってしまう）
       if cart_item.save
 	      redirect_to cart_items_path
       else

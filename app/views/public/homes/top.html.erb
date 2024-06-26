@@ -1,3 +1,4 @@
+<div class="container">
 <p>
   ようこそ、ながのCAKEへ！<br>
   このサイトは、ケーキ販売のECサイトになります。<br>
@@ -5,8 +6,8 @@
   購入には会員登録が必要になります。<br>
 </p>
 
-<div>
-  <h3>新着一覧</h3>
+  <div class="row justify-container-center">
+  <h2>新着一覧</h2>
 
   <!--新着商品を４つ表示する-->
   <!--並び替え機能と同様にモデルで定義-->
@@ -20,7 +21,7 @@
       ￥<%= item.price %>
     </div>
   <% end %>
-
+  </div>
   <%= link_to "全ての商品を見る＞", items_path %>
 </div>
 
