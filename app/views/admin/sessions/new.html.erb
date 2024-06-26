@@ -1,14 +1,14 @@
-<h2>管理者ログイン</h2>
+<h2 class="mx-3 my-5 text-secondary border border-3 rounded-top col-2 text-center">管理者ログイン</h2>
 
 <!--form_withに変更が必要？-->
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
-    <%= f.label :email, "メールアドレス" %><br />
+    <%= f.label :email, "メールアドレス" %>
     <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com" %>
   </div>
 
   <div class="field">
-    <%= f.label :password, "パスワード" %><br />
+    <%= f.label :password, "パスワード" %>
     <%= f.password_field :password, autocomplete: "current-password" %>
   </div>
 
@@ -20,7 +20,7 @@
   <!--% end %>-->
 
   <div class="actions">
-    <%= f.submit "ログイン" %>
+    <%= f.submit "ログイン", class:"btn btn-outline-primary ml-2 btn-sm" %>
   </div>
 <% end %>
 

@@ -8,7 +8,7 @@ class Item < ApplicationRecord
 
   # 商品を登録・編集する際に、設定したカラムが空の場合に弾く
 # ジャンル選択ができるようになるまでコメントアウト
-  # validates :genre_id, presence:true
+  validates :genre_id, presence:true
   validates :name, presence:true
   validates :item_detail, presence:true
   validates :is_active, inclusion: [true, false]
