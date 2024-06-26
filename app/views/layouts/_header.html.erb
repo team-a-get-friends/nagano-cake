@@ -5,63 +5,66 @@
   	<nav class="navbar navbar-expand-lg navbar-light bg-light">
   	  <div class="container">
 <!--お店のロゴ-->
-<!--<span class="border border-5 rounded-pill px-3 py-2" alt="..." >-->
-<!--	<%#= link_to "ながのCAKE", root_path %>-->
-<!--</span>-->
+<span class="border border-5 rounded-pill px-3 py-2" alt="..." >
+	<%= link_to "ながのCAKE", root_path, class:"text-secondary" %>
+</span>
 
-<div class="border-5 bg-secondary" >
-	<h3 class="">ながのCAKE</h3>
-</div>
+<!--<div class="border-5 bg-secondary" >-->
+<!--	<h3 class="">ながのCAKE</h3>-->
+<!--</div>-->
 <!--会員ログイン時のヘッダー-->
 <% if customer_signed_in? %>
 
-<p>ようこそ、<%= current_customer.last_name %>さん！</p>
+	<div class="text-secondary mx-3 my-3">
+		<b>ようこそ、<%= current_customer.last_name %>さん！</b>
+	</div>
+
 
 <!--マイページリンク-->
-	<%= link_to "マイページ", customer_path(current_customer) %>
+	<%= link_to "マイページ", customer_path(current_customer), class:"text-secondary" %>
 
 <!--商品一覧リンク-->
-	<%= link_to "商品一覧", items_path %>
+	<%= link_to "商品一覧", items_path, class:"text-secondary" %>
 
 <!--カートリンク-->
-	<%= link_to "カート", cart_items_path %>
+	<%= link_to "カート", cart_items_path, class:"text-secondary" %>
 
 <!--ログアウトリンク-->
-	<%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
+	<%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class:"text-secondary" %>
 
 <!--管理者ログイン時のヘッダー-->
 <% elsif admin_signed_in? %>
 
 <!--商品一覧リンク-->
-	<%= link_to "商品一覧", admin_items_path %>
+	<%= link_to "商品一覧", admin_items_path, class:"text-secondary" %>
 
 <!--会員一覧リンク-->
-	<%= link_to "会員一覧", admin_customers_path %>
+	<%= link_to "会員一覧", admin_customers_path, class:"text-secondary" %>
 
 <!--注文履歴一覧リンク=会員トップページ-->
-	<%= link_to "注文履歴一覧", admin_path %>
+	<%= link_to "注文履歴一覧", admin_path, class:"text-secondary" %>
 
 <!--ジャンル一覧リンク-->
-	<%= link_to "ジャンル一覧", admin_genres_path %>
+	<%= link_to "ジャンル一覧", admin_genres_path, class:"text-secondary" %>
 
 <!--ログアウトリンク-->
-	<%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+	<%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:"text-secondary" %>
 
 <!--誰もログインしていない時のヘッダー-->
 <% else %>
 
 <!--Aboutリンク-->
-	<%= link_to "About", about_path %>
+	<%= link_to "About", about_path, class:"text-secondary" %>
 
 <!--商品一覧リンク→ログインしていなくても閲覧できるよう設定-->
-	<%= link_to "商品一覧", items_path %>
+	<%= link_to "商品一覧", items_path, class:"text-secondary" %>
 
 <!--新規登録リンク-->
-	<%= link_to "新規登録", new_customer_registration_path %>
+	<%= link_to "新規登録", new_customer_registration_path, class:"text-secondary" %>
 
 <!--ログインリンク→ここは会員用のURL-->
 <!--【？】会員用のログインページにはどうやって行く？-->
-	<%= link_to "ログイン", new_customer_session_path %>
+	<%= link_to "ログイン", new_customer_session_path, class:"text-secondary" %>
 
 <% end %>
 			</div>

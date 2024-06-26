@@ -1,5 +1,8 @@
-<h4 class="mx-3 my-3 text-secondary border border-3 rounded-top col-3 text-center" alt="...">商品一覧</h4>
-（全<%= @items.count %>件）
+<h4 class="mx-3 my-5 text-secondary border border-3 rounded-top col-2 text-center" alt="...">商品一覧</h4>
+  <div class="text-secondary mx-2 my-3">
+    （全<%= @items.count %>件）
+  </div>
+
 
 <% @items.each do |item| %>
 

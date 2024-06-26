@@ -3,56 +3,56 @@
 <%= form_with model:@customer,url: customer_registration_path do |f| %>
   <%= render "public/shared/error_messages", resource: resource %>
 
-  <div class="field">
+  <div class="field text-secondary mx-3 my-3">
     <p>名前</p>
     <%= f.label :last_name, "（姓）" %>
     <!--autofocus:はページが読み込まれたときに自動でフォーカスさせる機能-->
-    <%= f.text_field :last_name, autofocus: true %><br />
+    <%= f.text_field :last_name, autofocus: true, class:"border border-secondary form-text text-muted form-control-sm" %><br />
 
     <%= f.label :first_name, "（名）" %>
-    <%= f.text_field :first_name, autofocus: true %>
+    <%= f.text_field :first_name, autofocus: true, class:"border border-secondary form-text text-muted form-control-sm" %>
   </div>
 
-  <div class="field">
+  <div class="field text-secondary mx-3 my-3">
     <p>フリガナ</p>
     <%= f.label :last_name_kana, "（セイ）" %>
-    <%= f.text_field :last_name_kana, autofocus: true %><br />
+    <%= f.text_field :last_name_kana, autofocus: true, class:"border border-secondary form-text text-muted form-control-sm" %><br />
 
     <%= f.label :first_name_kana, "（メイ）" %>
-    <%= f.text_field :first_name_kana, autofocus: true %>
+    <%= f.text_field :first_name_kana, autofocus: true, class:"border border-secondary form-text text-muted form-control-sm" %>
   </div>
 
-  <div class="field">
+  <div class="field text-secondary mx-3 my-3">
     <%= f.label :email, "メールアドレス" %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"border border-secondary form-text text-muted form-control-sm" %>
   </div>
 
-  <div class="field">
+  <div class="field text-secondary mx-3 my-3">
     <%= f.label :post_code, "郵便番号（ハイフンなし）" %>
-    <%= f.text_field :post_code, autofocus: true, placefield: "0000000" %>
+    <%= f.text_field :post_code, autofocus: true, placefield: "0000000", class:"border border-secondary form-text text-muted form-control-sm" %>
   </div>
 
-  <div class="field">
+  <div class="field text-secondary mx-3 my-3">
     <%= f.label :address, "住所" %>
-    <%= f.text_field :address, autofocus: true, placefield: "東京都渋谷区代々木神園町0-0" %>
+    <%= f.text_field :address, autofocus: true, placefield: "東京都渋谷区代々木神園町0-0", class:"border border-secondary form-text text-muted form-control-sm col-4" %>
   </div>
 
-  <div class="field">
+  <div class="field text-secondary mx-3 my-3">
     <%= f.label :telephone_number, "電話番号（ハイフンなし）" %>
-    <%= f.text_field :telephone_number, autofocus: true, placefield: "00000000000" %>
+    <%= f.text_field :telephone_number, autofocus: true, placefield: "00000000000", class:"border border-secondary form-text text-muted form-control-sm" %>
   </div>
 
-  <div class="field">
+  <div class="field text-secondary mx-3 my-3">
     <%= f.label :password, "パスワード（6文字以上）" %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.password_field :password, autocomplete: "new-password", class:"border border-secondary form-text text-muted form-control-sm" %>
   </div>
 
-  <div class="field">
+  <div class="field text-secondary mx-3 my-3">
     <%= f.label :password_confirmation, "パスワード（確認用）" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"border border-secondary form-text text-muted form-control-sm" %>
   </div>
 
   <div class="actions">
@@ -62,5 +62,8 @@
 
 <h4 class="mx-3 my-3 text-secondary border border-3 rounded-top col-3 text-center" alt="...">既に登録済みの方</h4>
 
-<%= link_to "こちら", new_customer_session_path %>
+<%= link_to "こちら", new_customer_session_path, class:"text-secondary mx-3 my-3" %>
+<div class="text-secondary">
  からログインしてください。
+</div>
+  

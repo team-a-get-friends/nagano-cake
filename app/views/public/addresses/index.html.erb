@@ -16,13 +16,19 @@
     <% @addresses.each do |address| %>
     <tr>
       <td>
-        <%= address.post_code %>
+        <div class="border border-secondary form-text text-muted form-control-sm">
+          <%= address.post_code %>
+        </div>
       </td>
       <td>
-        <%= address.address %>
+        <div class="border border-secondary form-text text-muted form-control-sm">
+          <%= address.address %>
+        </div>
       </td>
       <td>
-        <%= address.name %>
+        <div class="border border-secondary form-text text-muted form-control-sm">
+          <%= address.name %>
+        </div>
       </td>
       <td>
         <%= link_to "編集する", edit_address_path(address.id), class:"btn btn-outline-success ml-3 btn-sm" %>
