@@ -32,7 +32,8 @@
           <% end %>
             </td>
               <td><%= cart_item.subtotal %></td>
-              <td><%= link_to "削除する", cart_item_path(cart_item.id), class:"btn btn-outline-danger ml-3 btn-sm" %></td>
+              <!--削除の場合はmethodの指定が必要：delete-->
+              <td><%= link_to "削除する", cart_item_path(cart_item.id), method: :delete, class:"btn btn-outline-danger ml-3 btn-sm" %></td>
           </tr>
           <% @total_item_price += cart_item.subtotal %>
               <% end %>

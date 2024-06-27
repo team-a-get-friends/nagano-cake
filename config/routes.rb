@@ -22,7 +22,7 @@ Rails.application.routes.draw do
       end
       resources :cart_items, only: [:index, :update, :destroy, :create] do
         collection do
-        delete 'destroy_all'
+          delete 'destroy_all'
         end
       end
       # showより先に定義
