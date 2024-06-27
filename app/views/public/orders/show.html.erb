@@ -1,11 +1,13 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <h4 class="mx-0 my-5 text-secondary border border-3 rounded-top col-2 text-center" alt="...">注文履歴詳細</h4>
+      <h4 class="mx-0 my-5 text-secondary border border-3 rounded-top col-2 text-center">注文履歴詳細</h4>
 
-      <div class="text-secondary border border-3 rounded-top col-2 text-center" alt="...">
-        <b>注文情報</b>
-      </div>
+      <div class="col-8">
+        <div class="text-secondary border border-3 rounded-top col-2 text-center">
+          <b>注文情報</b>
+        </div>
+
       <table class="table table-hover align-middle text-secondary">
         <tr>
           <!--日にちの表記要変更-->
@@ -26,9 +28,13 @@
           <th>ステータス</th><td><%= @order.status_i18n %></td>
         </tr>
       </table>
-      <div class="text-secondary border border-3 rounded-top col-2 text-center" alt="...">
+
+    </div>
+
+    <div class="col-4">
+      <div class="text-secondary border border-3 rounded-top col-2 text-center">
         <b>請求情報</b>
-      </div>
+       </div>
       <table class="table table-hover align-middle text-secondary">
         <tr>
           <th>商品合計</th>
@@ -39,7 +45,6 @@
             <% end %>
             <%= @total_item_price %></td>
         </tr>
-
         <tr>
           <th>配送料</th><td><%= @order.shipping_fee %></td>
         </tr>
@@ -48,10 +53,15 @@
           <th>ご請求額</th><td><%= @order.total_price %></td>
         </tr>
       </table>
+    </div>
+  </div>
 
-      <div class="text-secondary border border-3 rounded-top col-2 text-center" alt="...">
+  <div class="row">
+    <div class="col-6">
+      <div class="text-secondary border border-3 rounded-top col-2 text-center">
         <b>注文内容</b>
       </div>
+
       <table class="table table-hover align-middle text-secondary">
         <thead>
           <tr>
@@ -76,4 +86,3 @@
     </div>
   </div>
 </div>
-

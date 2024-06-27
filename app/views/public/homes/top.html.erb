@@ -1,34 +1,41 @@
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <div class="border boder-3 rounded-top text-center mx-2 my-3 text-secondary" alt="...">
-        <b>ようこそ、ながのCAKEへ！</b><br>
-        <b>このサイトは、ケーキ販売のECサイトになります。</b><br>
-        <b>会員でない方も商品の閲覧は出来ますが、</b><br>
-        <b>購入には会員登録が必要になります。</b><br>
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="main-content col-10">
+
+
+      <div class="row justify-content-center text-center text-secondary">
+        <p>
+          ようこそ、ながのCAKEへ！<br>
+          このサイトは、ケーキ販売のECサイトになります。<br>
+          会員でない方も商品の閲覧は出来ますが、<br>
+          購入には会員登録が必要になります。<br>
+        </p>
       </div>
 
-      <div class="text-secondary">
-        <h4 class="mx-3 my-3 text-secondary border border-3 rounded-top col-3 text-center" alt="...">新着商品</h4>
+      <h4 class="mx-3 my-3 text-secondary border border-3 rounded-top col-3 text-center">新着商品</h4>
 
-<!--新着商品を４つ表示する-->
-<!--並び替え機能と同様にモデルで定義-->
-<!--eachの繰り返し回数を４回で指定すれば良さそう-->
+      <div class="row row-cols-4 p-3">
+        <!--新着商品を４つ表示する-->
+        <!--並び替え機能と同様にモデルで定義-->
+        <!--eachの繰り返し回数を４回で指定すれば良さそう-->
         <% @item.first(4).each do |item| %>
-        <div class="mx-3 my-3 text-secondary">
-          <%= link_to item_path(item.id) do %><br>
-            <%= image_tag item.get_item_image(100,100) %><br>
-          <% end %>
-          <%= item.name %><br>
-        ￥<%= item.price %>
-        </div>
+          <div class="col p-3">
+            <div>
+              <%= link_to item_path(item.id) do %>
+                <%= image_tag item.get_item_image(100,100) %><br>
+              <% end %>
+              <%= item.name %><br>
+              ￥<%= item.price %>
+            </div>
+          </div>
         <% end %>
 
-        <b><%= link_to "全ての商品を見る＞", items_path, class:"text-secondary mx-3 my-3" %></b>
+        <div class="row">
+          <div class="d-flex justify-content-end">
+            <%= link_to "全ての商品を見る＞", items_path %>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
-<!--ジャンル検索の呼び出しはrenderで実施-->
-<!--adminから呼び出す？？権限？？-->
-<!--render ''-->
