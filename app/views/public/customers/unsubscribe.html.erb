@@ -9,11 +9,11 @@
 				<b>これまでの購入履歴が閲覧できなくなります。</b><br>
 				<b>退会する場合は、「退会する」をクリックしてください。</b>
 			</div>
-			<!--会員マイページに遷移-->
-			<!--current_customerなのでcustomers_controllerのunsubscribeには@customerなどの記述不要-->
+<!--会員マイページに遷移-->
+<!--current_customerなのでcustomers_controllerのunsubscribeには@customerなどの記述不要-->
 			<%= link_to "退会しない", customer_path(current_customer.id), class:"btn btn-outline-primary ml-2 btn-sm" %>
-			<!--退会後は会員新規登録画面に遷移-->
-			<!--data: { confirm: "退会してもよろしいですか？" }=退会するボタン押した後確認メッセージ表示させる-->
+<!--退会後は会員新規登録画面に遷移-->
+<!--data: { confirm: "退会してもよろしいですか？" }=退会するボタン押した後確認メッセージ表示させる-->
 			<%= link_to "退会する", withdraw_customers_path, method: :patch, data: { confirm: "退会してもよろしいですか？" }, class:"btn btn-outline-danger ml-1" %>
 		</div>
   </div>

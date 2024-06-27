@@ -1,30 +1,34 @@
-<div class="border boder-3 rounded-top text-center mx-2 my-3 text-secondary" alt="...">
-  <b>ようこそ、ながのCAKEへ！</b><br>
-  <b>このサイトは、ケーキ販売のECサイトになります。</b><br>
-  <b>会員でない方も商品の閲覧は出来ますが、</b><br>
-  <b>購入には会員登録が必要になります。</b><br>
-</div>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="border boder-3 rounded-top text-center mx-2 my-3 text-secondary" alt="...">
+        <b>ようこそ、ながのCAKEへ！</b><br>
+        <b>このサイトは、ケーキ販売のECサイトになります。</b><br>
+        <b>会員でない方も商品の閲覧は出来ますが、</b><br>
+        <b>購入には会員登録が必要になります。</b><br>
+      </div>
 
-<div class="text-secondary">
-  <h4 class="mx-3 my-3 text-secondary border border-3 rounded-top col-3 text-center" alt="...">新着一覧</h4>
+      <div class="text-secondary">
+        <h4 class="mx-3 my-3 text-secondary border border-3 rounded-top col-3 text-center" alt="...">新着商品</h4>
 
-  <!--新着商品を４つ表示する-->
-  <!--並び替え機能と同様にモデルで定義-->
-  <!--eachの繰り返し回数を４回で指定すれば良さそう-->
-  <% @item.first(4).each do |item| %>
-    <div class="mx-3 my-3 text-secondary">
-      <%= link_to item_path(item.id) do %><br>
-        <%= image_tag item.get_item_image(100,100) %>
-      <% end %>
-      <%= item.name %>
-      ￥<%= item.price %>
+<!--新着商品を４つ表示する-->
+<!--並び替え機能と同様にモデルで定義-->
+<!--eachの繰り返し回数を４回で指定すれば良さそう-->
+        <% @item.first(4).each do |item| %>
+        <div class="mx-3 my-3 text-secondary">
+          <%= link_to item_path(item.id) do %><br>
+            <%= image_tag item.get_item_image(100,100) %><br>
+          <% end %>
+          <%= item.name %><br>
+        ￥<%= item.price %>
+        </div>
+        <% end %>
+
+        <b><%= link_to "全ての商品を見る＞", items_path, class:"text-secondary mx-3 my-3" %></b>
+      </div>
     </div>
-  <% end %>
-
-  <%= link_to "全ての商品を見る＞", items_path, class:"text-secondary mx-3 my-3" %>
+  </div>
 </div>
-
-
 <!--ジャンル検索の呼び出しはrenderで実施-->
 <!--adminから呼び出す？？権限？？-->
 <!--render ''-->

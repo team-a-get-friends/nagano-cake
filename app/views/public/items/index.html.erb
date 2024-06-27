@@ -9,11 +9,10 @@
       <% @items.each do |item| %>
       <div class="text-secondary mx-3 my-3">
         <%= link_to item_path(item.id) do %>
-        <%= image_tag item.get_item_image(100,100) %>
+          <%= image_tag item.get_item_image(100,100) %><br>
         <% end %>
-
-        <%= item.name %>
-      ￥<%= item.price %>
+          <%= item.name %><br>
+        ￥<%= item.price %>
       </div>
       <% end %>
 
