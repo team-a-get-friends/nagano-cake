@@ -1,16 +1,28 @@
-<h2>商品一覧</h2>
-（全<%= @items.count %>件）
+<div class="container-fluid">
+  <div class="main row justify-content-center">
+    <div class="main-content col-10">
 
-<% @items.each do |item| %>
+      <b>商品一覧</b>（全<%= @items_all.count %>件）
 
-  <%= link_to item_path(item.id) do %>
-    <%= image_tag item.get_item_image(100,100) %>
-  <% end %>
-
-  <%= item.name %>
-  ￥<%= item.price %>
-
-<% end %>
+      <div class="row row-cols-4 p-3">
+        <% @items.each do |item| %>
+        <div class="col p-3">
+          <div>
+              <%= link_to item_path(item.id) do %>
+                <%= image_tag item.get_item_image(100,100) %><br>
+              <% end %>
+              <%= item.name %>
+              ￥<%= item.price %>
+          </div>
+        </div>
+        <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!--ページ送りを追加（表示するには、商品が８件以上必要）-->
-<%= paginate @items %>
+<div class="row justify-content-center">
+  <%= paginate @items %>
+</div>

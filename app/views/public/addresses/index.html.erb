@@ -1,9 +1,9 @@
-<h2>配送先登録/一覧</h2>
+<h2 class="mx-3 my-5 text-secondary border border-3 rounded-top col-3 text-center">配送先登録/一覧</h2>
 
 <!--, locals: {view_name: 'index'}-->
 <%= render 'form', address: @address %>
 
-<table>
+<table class="table table-hover align-middle text-secondary">
   <thead>
     <tr>
       <th>郵便番号</th>
@@ -25,8 +25,8 @@
         <%= address.name %>
       </td>
       <td>
-        <%= link_to "編集する", edit_address_path(address.id) %>
-        <%= link_to "削除する", address_path(address.id), method: :delete %>
+        <%= link_to "編集する", edit_address_path(address.id), class:"btn btn-outline-success ml-2 btn-sm" %>
+        <%= link_to "削除する", address_path(address.id), method: :delete, class:"btn btn-outline-danger ml-2 btn-sm" %>
       </td>
     <% end %>
     </tr>

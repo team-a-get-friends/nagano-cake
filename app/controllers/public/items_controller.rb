@@ -3,6 +3,7 @@ class Public::ItemsController < ApplicationController
   def index
     # ページネーション追加
     @items = Item.page(params[:page])
+    @items_all = Item.all
   end
 
   def show

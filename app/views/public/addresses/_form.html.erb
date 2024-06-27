@@ -1,19 +1,16 @@
 <%= form_with model:address do |f| %>
-  <%= f.label :post_code, "郵便番号（ハイフンなし）" %>
-  <%= f.text_field :post_code, placeholder: "0000000" %>
+  <%= f.label :post_code, "郵便番号（ハイフンなし）" %><%= f.text_field :post_code, placeholder: "0000000" %><br>
 
-  <%= f.label :address, "住所" %>
-  <%= f.text_field :address, placeholder: "東京都渋谷区神園町0-0" %>
+  <%= f.label :address, "住所" %><%= f.text_field :address, placeholder: "東京都渋谷区神園町0-0" %><br>
 
-  <%= f.label :name, "宛名" %>
-  <%= f.text_field :name, placeholder: "令和道子" %>
+  <%= f.label :name, "宛名" %><%= f.text_field :name, placeholder: "令和道子" %>
 
 <!--【？】分岐について質問-->
   <% if address.id == nil %>
-    <%= f.submit "新規登録" %>
+    <%= f.submit "新規登録",class:"btn btn-outline-success ml-2 btn-sm" %>
 
   <% else %>
-    <%= f.submit "変更内容を保存" %>
+    <%= f.submit "変更内容を保存",class:"btn btn-outline-success ml-2 btn-sm" %>
   <% end %>
 
 <% end %>

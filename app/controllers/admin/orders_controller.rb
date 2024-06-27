@@ -12,6 +12,13 @@ class Admin::OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @order.update(order_params)
     # 関連するorder_detailを呼び出して連動させられる
+    @order_details = @order.order_details
+    # 入金待ち0＝＞入金確認1
+    if @order.status == "confirming_payment"
+      @order_details.each do |order_detail|
+        order_detail.update(making_status: 1)
+      end
+    end
     redirect_to admin_order_path(@order.id)
   end
 
@@ -24,6 +31,11 @@ class Admin::OrdersController < ApplicationController
 
   def order_params
     params.require(:order).permit(:status)
+  end
+
+  # ステータスの連動のために定義
+  def order_detail_params
+    params.require(:order_detail).permit(:making_status)
   end
 
 end
