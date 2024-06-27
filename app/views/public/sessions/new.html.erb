@@ -1,25 +1,24 @@
-<h2>ログイン</h2>
+<h2 class="mx-3 my-5 text-secondary border border-3 rounded-top col-2 text-center">ログイン</h2>
 
-<p>会員の方はこちらからログイン</p>
+<h5 class="mx-3 my-2 text-secondary border border-3 rounded-top col-4 text-center">会員の方はこちらからログイン</h5>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
-    <%= f.label :email, "メールアドレス" %><br />
+    <%= f.label :email, "メールアドレス" %>
     <%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "sample@example.com" %>
   </div>
 
   <div class="field">
-    <%= f.label :password, "パスワード" %><br />
+    <%= f.label :password, "パスワード" %>
     <%= f.password_field :password, autocomplete: "current-password" %>
   </div>
 
   <div class="actions">
-    <%= f.submit "ログイン" %>
+    <%= f.submit "ログイン", class:"btn btn-outline-primary ml-2 btn-sm" %>
   </div>
 <% end %>
 
 <%= render "public/shared/links" %>
 
-<p>会員登録がお済でない方</p>
-<%= link_to "こちら", new_customer_registration_path %>
- から新規登録を行ってください。
+<h5 class="mx-3 my-5 text-secondary border border-3 rounded-top col-4 text-center">会員登録がお済でない方</h5>
+<p><%= link_to "こちら", new_customer_registration_path %> から新規登録を行ってください。</p>

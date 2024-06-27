@@ -1,11 +1,18 @@
-<%= image_tag @item.get_item_image(150,150) %>
-<%= @item.name %>
-<%= @item.item_detail %>
-￥<%= @item.with_tax_price %>（税込）
+<div class="row">
+  <div class="col-4">
+		<%= image_tag @item.get_item_image(150,150) %>
+  </div>
 
-<!--カートに選んだ商品データを送信する-->
-<%= form_with model: @cart_item, url: cart_items_path, method: :post, local:true do |f| %>
-	<%= f.hidden_field :item_id, :value => @item.id %>
-	<%= f.select :amount, 1..10, include_blank:"個数選択" %>
-	<%= f.submit "カートに入れる" %>
-<% end %>
+   <div class="col-8">
+		<h2><%= @item.name %></h2>
+		<p><%= @item.item_detail %></p>
+		<h3>￥<%= @item.with_tax_price %></h3><h5>（税込）</h5>
+
+		<!--カートに選んだ商品データを送信する-->
+		<%= form_with model: @cart_item, url: cart_items_path, method: :post, local:true do |f| %>
+			<%= f.hidden_field :item_id, :value => @item.id %>
+			<%= f.select :amount, 1..10, include_blank:"個数選択" %>
+			<%= f.submit "カートに入れる", class:"btn btn-outline-success ml-2 btn-sm" %>
+		<% end %>
+	 </div>
+</div>

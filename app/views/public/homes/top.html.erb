@@ -6,17 +6,17 @@
 </p>
 
 <div>
-  <h3>新着一覧</h3>
+  <h3 class="mx-3 my-5 text-secondary border border-3 rounded-top col-2 text-center">新着一覧</h3>
 
   <!--新着商品を４つ表示する-->
   <!--並び替え機能と同様にモデルで定義-->
   <!--eachの繰り返し回数を４回で指定すれば良さそう-->
   <% @item.first(4).each do |item| %>
     <div>
-      <%= link_to item_path(item.id) do %><br>
-        <%= image_tag item.get_item_image(100,100) %>
+      <%= link_to item_path(item.id) do %>
+        <%= image_tag item.get_item_image(100,100) %><br>
       <% end %>
-      <%= item.name %>
+      <%= item.name %><br>
       ￥<%= item.price %>
     </div>
   <% end %>
