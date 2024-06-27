@@ -4,88 +4,64 @@
   	  <div class="container">
 
 				<span class="border border-5 rounded-pill px-3 py-2">
+
 					<%= link_to "ながのCAKE", root_path, class:"text-secondary" %>
 				</span>
 
 				<!--会員ログイン時のヘッダー-->
 				<% if customer_signed_in? %>
 
-				<div class="text-secondary mx-3 my-3">
+        <div class="text-secondary mx-3 my-3">
 					<b>ようこそ、<%= current_customer.last_name %>さん！</b>
 				</div>
 
 
-				<!--マイページリンク-->
-				<span class="border border-5 rounded-pill px-3 py-2">
-					<%= link_to "マイページ", customer_path(current_customer), class:"text-secondary" %>
-				</span>
-
-				<!--商品一覧リンク-->
-				<span class="border border-5 rounded-pill px-3 py-2">
-					<%= link_to "商品一覧", items_path %>
-				</span>
-
-				<!--カートリンク-->
-				<span class="border border-5 rounded-pill px-3 py-2">
-					<%= link_to "カート", cart_items_path %>
-				</span>
-
-				<span class="border border-5 rounded-pill px-3 py-2">
-				<!--ログアウトリンク-->
-					<%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
-				</span>
-
+				  <!--マイページリンク-->
+				  <%= link_to "マイページ", customer_path(current_customer), class:"text-secondary" %>
+				
+				  <!--商品一覧リンク-->
+				  <%= link_to "商品一覧", items_path %>
+				
+				  <!--カートリンク-->
+				  <%= link_to "カート", cart_items_path %>
+				
+				  <!--ログアウトリンク-->
+				  <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
+				
 				<!--管理者ログイン時のヘッダー-->
 				<% elsif admin_signed_in? %>
 
-				<!--商品一覧リンク-->
-				<span class="border border-5 rounded-pill px-3 py-2">
-					<%= link_to "商品一覧", admin_items_path %>
-				</span>
+					<!--商品一覧リンク-->
+						<%= link_to "商品一覧", admin_items_path, class:"text-secondary" %>
 
-				<!--会員一覧リンク-->
-				<span class="border border-5 rounded-pill px-3 py-2">
-					<%= link_to "会員一覧", admin_customers_path %>
-				</span>
+					<!--会員一覧リンク-->
+						<%= link_to "会員一覧", admin_customers_path, class:"text-secondary" %>
 
-				<!--注文履歴一覧リンク=会員トップページ-->
-				<span class="border border-5 rounded-pill px-3 py-2">
-					<%= link_to "注文履歴一覧", admin_path %>
-				</span>
+					<!--注文履歴一覧リンク=会員トップページ-->
+						<%= link_to "注文履歴一覧", admin_path, class:"text-secondary" %>
 
-				<!--ジャンル一覧リンク-->
-				<span class="border border-5 rounded-pill px-3 py-2">
-					<%= link_to "ジャンル一覧", admin_genres_path %>
-				</span>
+					<!--ジャンル一覧リンク-->
+						<%= link_to "ジャンル一覧", admin_genres_path, class:"text-secondary" %>
 
-				<!--ログアウトリンク-->
-				<span class="border border-5 rounded-pill px-3 py-2">
-					<%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
-				</span>
+					<!--ログアウトリンク-->
+						<%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:"text-secondary" %>
 
 				<!--誰もログインしていない時のヘッダー-->
 				<% else %>
 
-				<!--Aboutリンク-->
-				<span class="border border-5 rounded-pill px-3 py-2">
-					<%= link_to "About", about_path %>
-				</span>
 
-				<!--商品一覧リンク→ログインしていなくても閲覧できるよう設定-->
-				<span class="border border-5 rounded-pill px-3 py-2">
-					<%= link_to "商品一覧", items_path %>
-				</span>
+					<!--Aboutリンク-->
+						<%= link_to "About", about_path, class:"text-secondary" %>
 
-				<!--新規登録リンク-->
-				<span class="border border-5 rounded-pill px-3 py-2">
-					<%= link_to "新規登録", new_customer_registration_path %>
-				</span>
+					<!--商品一覧リンク→ログインしていなくても閲覧できるよう設定-->
+						<%= link_to "商品一覧", items_path, class:"text-secondary" %>
 
-				<!--ログインリンク→ここは会員用のURL-->
-				<!--【？】会員用のログインページにはどうやって行く？-->
-				<span class="border border-5 rounded-pill px-3 py-2">
-					<%= link_to "ログイン", new_customer_session_path %>
-				</span>
+					<!--新規登録リンク-->
+						<%= link_to "新規登録", new_customer_registration_path, class:"text-secondary" %>
+
+					<!--ログインリンク→ここは会員用のURL-->
+					<!--【？】会員用のログインページにはどうやって行く？-->
+						<%= link_to "ログイン", new_customer_session_path, class:"text-secondary" %>
 
 				<% end %>
 
