@@ -1,7 +1,9 @@
-<!--商品の編集-->
-<h2 class="mx-3 my-5 text-secondary border border-3 rounded-top col-2 text-center">商品編集</h2>
+ <div class="container">
+  <!--商品の編集-->
+  <h2 class="mx-3 my-5 text-secondary border border-3 rounded-top col-2 text-center">商品編集</h2>
 
-<div class="container justify-center">
-  <!--退避：, url: admin_item_path, method: :patch-->
-  <%= render 'form', item: @item, url: admin_item_path, method: :patch %>
+  <div class="container justify-center">
+    <!--退避：, url: admin_item_path, method: :patch-->
+    <%= render 'form', item: @item, url: admin_item_path, method: :patch %>
+  </div>
 </div>
