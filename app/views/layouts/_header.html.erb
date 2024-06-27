@@ -1,84 +1,71 @@
-<!--ロゴの挿入はこれから、リンクのみ作成-->
-<li>
-<!--お店のロゴ-->
-	<%= link_to "ながのCAKE", root_path %>
-</li>
+<body class="d-flex flex-column vh-100">
+  <header class="shadow-sm">
+  	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  	  <div class="container">
 
-<!--会員ログイン時のヘッダー-->
-<% if customer_signed_in? %>
+				<span class="border border-5 rounded-pill px-3 py-2">
 
-<p>ようこそ、<%= current_customer.last_name %>さん！</p>
+					<%= link_to "ながのCAKE", root_path, class:"text-secondary" %>
+				</span>
 
-<li>
-<!--マイページリンク-->
-	<%= link_to "マイページ", customer_path(current_customer) %>
-</li>
+				<!--会員ログイン時のヘッダー-->
+				<% if customer_signed_in? %>
 
-<li>
-<!--商品一覧リンク-->
-	<%= link_to "商品一覧", items_path %>
-</li>
+        <div class="text-secondary mx-3 my-3">
+					<b>ようこそ、<%= current_customer.last_name %>さん！</b>
+				</div>
 
-<li>
-<!--カートリンク-->
-	<%= link_to "カート", cart_items_path %>
-</li>
 
-<li>
-<!--ログアウトリンク-->
-	<%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
-</li>
+				  <!--マイページリンク-->
+				  <%= link_to "マイページ", customer_path(current_customer), class:"text-secondary" %>
+				
+				  <!--商品一覧リンク-->
+				  <%= link_to "商品一覧", items_path %>
+				
+				  <!--カートリンク-->
+				  <%= link_to "カート", cart_items_path %>
+				
+				  <!--ログアウトリンク-->
+				  <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
+				
+				<!--管理者ログイン時のヘッダー-->
+				<% elsif admin_signed_in? %>
 
-<!--管理者ログイン時のヘッダー-->
-<% elsif admin_signed_in? %>
+					<!--商品一覧リンク-->
+						<%= link_to "商品一覧", admin_items_path, class:"text-secondary" %>
 
-<li>
-<!--商品一覧リンク-->
-	<%= link_to "商品一覧", admin_items_path %>
-</li>
+					<!--会員一覧リンク-->
+						<%= link_to "会員一覧", admin_customers_path, class:"text-secondary" %>
 
-<li>
-<!--会員一覧リンク-->
-	<%= link_to "会員一覧", admin_customers_path %>
-</li>
+					<!--注文履歴一覧リンク=会員トップページ-->
+						<%= link_to "注文履歴一覧", admin_path, class:"text-secondary" %>
 
-<li>
-<!--注文履歴一覧リンク=会員トップページ-->
-	<%= link_to "注文履歴一覧", admin_path %>
-</li>
+					<!--ジャンル一覧リンク-->
+						<%= link_to "ジャンル一覧", admin_genres_path, class:"text-secondary" %>
 
-<li>
-<!--ジャンル一覧リンク-->
-	<%= link_to "ジャンル一覧", admin_genres_path %>
-</li>
+					<!--ログアウトリンク-->
+						<%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:"text-secondary" %>
 
-<li>
-<!--ログアウトリンク-->
-	<%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
-</li>
+				<!--誰もログインしていない時のヘッダー-->
+				<% else %>
 
-<!--誰もログインしていない時のヘッダー-->
-<% else %>
 
-<li>
-<!--Aboutリンク-->
-	<%= link_to "About", about_path %>
-</li>
+					<!--Aboutリンク-->
+						<%= link_to "About", about_path, class:"text-secondary" %>
 
-<li>
-<!--商品一覧リンク→ログインしていなくても閲覧できるよう設定-->
-	<%= link_to "商品一覧", items_path %>
-</li>
+					<!--商品一覧リンク→ログインしていなくても閲覧できるよう設定-->
+						<%= link_to "商品一覧", items_path, class:"text-secondary" %>
 
-<li>
-<!--新規登録リンク-->
-	<%= link_to "新規登録", new_customer_registration_path %>
-</li>
+					<!--新規登録リンク-->
+						<%= link_to "新規登録", new_customer_registration_path, class:"text-secondary" %>
 
-<li>
-<!--ログインリンク→ここは会員用のURL-->
-<!--【？】会員用のログインページにはどうやって行く？-->
-	<%= link_to "ログイン", new_customer_session_path %>
-</li>
+					<!--ログインリンク→ここは会員用のURL-->
+					<!--【？】会員用のログインページにはどうやって行く？-->
+						<%= link_to "ログイン", new_customer_session_path, class:"text-secondary" %>
 
-<% end %>
+				<% end %>
+
+			</div>
+		</nav>
+	</header>
+</body>

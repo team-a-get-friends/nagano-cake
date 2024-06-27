@@ -1,1 +1,30 @@
-index
+<div class="container">
+  <div class="row">
+    <div>
+      <h4 class="mx-3 my-5 text-secondary border border-3 rounded-top col-6 text-center">商品一覧</h4>
+    </div>
+    <div class="text-secondary mx-2">
+      （全<%= @items_all.count %>件）
+    </div>
+  </div>
+
+  <!--退避-->
+  <div class="row row-cols-4 p-3">
+    <% @items.each do |item| %>
+      <div class="text-secondary mx-3 my-3">
+        <div class="col">
+          <%= link_to item_path(item.id) do %>
+            <%= image_tag item.get_item_image(100,100) %><br>
+          <% end %>
+          <%= item.name %><br>
+          ￥<%= item.price %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <!--ページ送りを追加（表示するには、商品が８件以上必要）-->
+  <div class="row justify-content-center">
+    <%= paginate @items %>
+  </div>
+</div>

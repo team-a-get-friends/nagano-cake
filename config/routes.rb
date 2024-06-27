@@ -16,19 +16,23 @@ Rails.application.routes.draw do
       resources :items, only: [:index, :show]
       resources :customers, only: [:show, :edit, :update] do
         collection do
-          get 'check_out'
+          get 'unsubscribe'
           patch 'withdraw'
         end
       end
-      resources :cart_items, only: [:index, :update, :destroy] do
+      resources :cart_items, only: [:index, :update, :destroy, :create] do
         collection do
-        delete 'destroy_all'
+          delete 'destroy_all'
         end
       end
+      # showより先に定義
+      post 'orders/confirm' => "orders#confirm"
       resources :orders, only: [:new, :create, :index, :show] do
         collection do
-          get 'confirm'
-          get 'complete'
+          # 先にshowが検索されてしまうのでconfirmをshowより上に呼び出したい
+          # post 'confirm'
+          # アプリケーション詳細設計書に合わせて修正
+          get 'thanks'
         end
       end
       resources :addresses, except: [:new, :show]
@@ -41,9 +45,10 @@ Rails.application.routes.draw do
     namespace :admin do
 	    get '/' => 'homes#top'
 	    resources :items, except: [:destroy]
-	    resources :genres, only: [:index, :create, :edit, :update]
+	    resources :genres, only: [:index, :create, :edit, :update] #only: %i[index show new create edit update] 必要に応じて
+	   #顧客詳細情報(管理者)
     	resources :customers, only: [:index, :show, :edit, :update]
-	    resources :orders, only: [:index, :show, :update]
+	    resources :orders, only: [:index, :show, :edit, :update]
 	    resources :order_details, only: [:update]
     end
   end

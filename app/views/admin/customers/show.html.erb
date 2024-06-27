@@ -1,1 +1,57 @@
-show
+<!--顧客の会員詳細画面(admin/customers/:id)-->
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h4 class="mx-3  my-5 text-secondary border border-3 rounded-top col-4 text-center"><%= @customer.last_name %> <%= @customer.first_name %>さんの会員詳細</h4>
+      <div class="d-flex align-items-center">
+        <table class="table table-hover align-middle text-secondary">
+          <tr>
+            <th>会員ID</td>
+            <td><%= @customer.id %></td>
+          </tr>
+          <tr>
+            <th>氏名</td>
+            <td><%= @customer.last_name %>　<%= @customer.first_name %></td>
+          </tr>
+
+          <tr>
+            <th>フリガナ</th>
+            <td><%= @customer.last_name_kana %>　<%= @customer.first_name_kana %></td>
+          </tr>
+
+          <tr>
+            <th>郵便番号(ハイフンなし)</th>
+            <td><%= @customer.post_code %></td>
+          </tr>
+
+          <tr>
+            <th>住所</th>
+            <td><%= @customer.address %></td>
+          </tr>
+
+          <tr>
+            <th>電話番号(ハイフンなし)</th>
+            <td><%= @customer.telephone_number %></td>
+          </tr>
+
+          <tr>
+            <th>メールアドレス</th>
+            <td><%= @customer.email %></td>
+          </tr>
+
+          <tr>
+            <th>会員ステータス</th>
+            <th><%= @customer.customer_status %></th>
+          </tr>
+
+          <tr>
+            <td></td>
+            <td><%= link_to "編集する", edit_admin_customer_path, class:"btn btn-outline-success ml-2 btn-sm" %>
+            <!--顧客ごとの注文履歴機能は必須ではない、最後-->
+            <!--%= link_to "注文履歴一覧を見る", "#", class:"btn btn-primary" %></td>-->
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

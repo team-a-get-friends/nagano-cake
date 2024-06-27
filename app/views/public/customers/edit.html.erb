@@ -1,1 +1,57 @@
-edit
+<!--会員情報編集画面-->
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h4 class="my-5 text-secondary border border-3 rounded-top col-2" alt="...">会員情報編集</h4>
+      <%= form_with model:@customer, local:true do |f| %>
+        <table class="table table-borderless text-secondary">
+          <tr>
+            <td>氏名</td>
+            <td><%= f.text_field :last_name, class:"border border-secondary form-text text-muted form-control-sm" %></td>
+            <td><%= f.text_field :first_name, class:"border border-secondary form-text text-muted form-control-sm" %></td>
+          </tr>
+  
+          <tr>
+            <td>フリガナ</td>
+            <td><%= f.text_field :last_name_kana, class:"border border-secondary form-text text-muted form-control-sm" %></td>
+            <td><%= f.text_field :first_name_kana, class:"border border-secondary form-text text-muted form-control-sm" %></td>
+          </tr>
+  
+          <tr>
+            <!--(ハイフンなし)追記-->
+            <td>郵便番号(ハイフンなし)</td>
+            <td><%= f.text_field :post_code, class:"border border-secondary form-text text-muted form-control-sm" %></td>
+            <td></td>
+          </tr>
+  
+          <tr>
+            <td>住所</td>
+            <td><%= f.text_field :address, class:"border border-secondary form-text text-muted form-control-sm" %></td>
+            <td></td>
+          </tr>
+  
+          <tr>
+            <!--(ハイフンなし)追記-->
+            <td>電話番号(ハイフンなし)</td>
+            <td><%= f.text_field :telephone_number, class:"border border-secondary form-text text-muted form-control-sm" %></td>
+            <td></td>
+          </tr>
+  
+          <tr>
+            <td>メールアドレス</td>
+            <td><%= f.text_field :email, class:"border border-secondary form-text text-muted form-control-sm" %></td>
+            <td></td>
+          </tr>
+  
+          <tr>
+            <td></td>
+            <td><%= f.submit "編集内容を保存", class:"btn btn-outline-success" %></td>
+            <!--退会するボタン押した時確認メッセージ表示させる(退会後退会画面に遷移)-->
+            <td><%= link_to "退会する", unsubscribe_customers_path, data: { confirm: "退会してもよろしいですか？" }, class:"btn btn-outline-danger ml-1" %></td>
+          </tr>
+        </table>
+      <% end %>
+    </div>
+  </div>
+</div>

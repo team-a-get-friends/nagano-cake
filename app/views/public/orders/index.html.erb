@@ -1,1 +1,67 @@
-index
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h4 class="mx-3 my-5 text-secondary border border-3 rounded-top col-2 text-center">注文履歴一覧</h4>
+
+        <table class="table table-hover align-middle text-secondary">
+          <thead>
+            <tr>
+              <th>
+                注文日
+              </th>
+              <th>
+                配送先
+              </th>
+              <th>
+                注文商品
+              </th>
+              <th>
+                支払金額
+              </th>
+              <th>
+                ステータス
+              </th>
+              <th>
+                注文詳細
+            </tr>
+          </thead>
+          <tbody>
+            <% @orders.each do |order| %>
+            <tr>
+              <td>
+                <!--表示方法を変更する必要あり-->
+                <%= order.created_at.strftime("%Y/%m/%d %H:%M") %>
+              </td>
+              <td>
+                〒<%= order.post_code %><br>
+                <%= order.address %><br>
+                <%= order.name %>
+              </td>
+              <td>
+                <!--@order_detailは出来ない、これで正しくeachできる？？-->
+                <% order.order_details.each do |order_detail| %>
+                  <%= Item.find(order_detail.item_id).name %><br>
+                <% end %>
+              </td>
+              <td>
+                <%= order.total_price %>円
+              </td>
+              <td>
+                <!--いったん退避：.to_i.map.i18n.("enums.order.status")-->
+                <%= order.status_i18n %>
+
+                <!--参考-->
+                <!--%= f.select :status, Order.statuses.keys.map {|k| [I18n.t("enums.order.status.#{k}"), k]} %>-->
+
+              </td>
+              <td>
+                <%= link_to "表示する", order_path(order.id), class:"btn btn-outline-info ml-2 btn-sm" %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      
+    </div>
+  </div>
+</div>

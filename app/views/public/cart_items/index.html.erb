@@ -1,1 +1,66 @@
-index
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="row p-1">
+        <h4 class="mx-4 my-5 text-secondary border border-3 rounded-top col-3 text-center">ショッピングカート</h4>
+        <div class="mt-auto mb-auto">
+          <%= link_to "カートを空にする", destroy_all_cart_items_path ,method: :delete, class:"btn btn-outline-danger ml-3 btn-sm" %>
+        </div>
+      </div>
+
+      <table class="table table-hover align-middle text-secondary">
+        <thead>
+          <tr>
+            <th>商品名</th>
+            <th>単価（税込）</th>
+            <th>数量</th>
+            <th>小計</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @cart_items.each do |cart_item| %>
+          <tr>
+            <td><%= cart_item.item.name %></td>
+            <!--モデルが異なっても呼び出しできるが、当該のモデルの呼び出しも必要-->
+            <td><%= cart_item.item.with_tax_price %></td>
+            <td>
+              <!--each分の中はインスタンス変数ではない-->
+              <%= form_with model: cart_item, url: cart_item_path(cart_item.id), method: :patch do |f| %>
+              <%= f.select :amount, *[1..10] %>
+              <%= f.submit "変更", class:"ml-5 btn btn-outline-success" %>
+          <% end %>
+            </td>
+              <td><%= cart_item.subtotal %></td>
+              <!--削除の場合はmethodの指定が必要：delete-->
+              <td><%= link_to "削除する", cart_item_path(cart_item.id), method: :delete, class:"btn btn-outline-danger ml-3 btn-sm" %></td>
+          </tr>
+          <% @total_item_price += cart_item.subtotal %>
+              <% end %>
+        </tbody>
+      </table>
+
+      <div class="row justify-content-end">
+        <div class="col-3">
+        <table class="table table-hover align-middle text-secondary">
+          <tr>
+            <th>合計金額</th>
+            <td><%= @total_item_price %></td>
+          </tr>
+        </table>
+        </div>
+      </div>
+
+      <div class="text-left">
+        <%= link_to "買い物を続ける", root_path, class:"btn btn-outline-primary ml-3 btn-sm" %>
+      </div>
+
+      <!--カートが空の場合は情報入力に進むボタンを表示させない-->
+      <% if @cart_items.present? %>
+        <div class="justify-content-center row">
+          <%= link_to "情報入力に進む", new_order_path, class:"text-center btn btn-outline-success ml-3 btn-sm" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

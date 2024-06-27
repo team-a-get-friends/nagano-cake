@@ -1,2 +1,7 @@
-<h2>商品新規登録</h2>
-<%= render 'form', item: @item %>
+<div class="container">
+  <h2 class="mx-3 my-5 text-secondary border border-3 rounded-top col-3 text-center">商品新規登録</h2>
+
+  <div class="container justify-center">
+    <%= render 'form', item: @item, url: admin_items_path, method: :post %>
+  </div>
+</div>
